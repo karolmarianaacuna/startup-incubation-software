@@ -6,6 +6,9 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -16,7 +19,7 @@ public class StartupEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_startup")
-    private int idStartup;
+    private long idStartup;
 
     @NotNull
     @Size(min = 1, max = 50)
@@ -31,11 +34,21 @@ public class StartupEntity implements Serializable {
     @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "sector_startup")
-    private String sectorStar;
+    private String sectorStartup;
 
     @Size(max = 200)
     @Column(name = "logo_startup")
-    private String logo; 
+    private String logo;
+
+
+    //relacion de startup con convocatoria(muchos a uno)
+    @ManyToOne()
+    @JoinColumn(name = "id_convocatoria", referencedColumnName = "id_convocatoria")
+    private ConvocatoriaEntity convocatoria;
+
+    //Relacion de startup a mentoria (uno a muchos)
+    @OneToMany(mappedBy = "startupMonitoria", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Collection<MonitoriaEntity> monitoriasStartup;
 
 
 }

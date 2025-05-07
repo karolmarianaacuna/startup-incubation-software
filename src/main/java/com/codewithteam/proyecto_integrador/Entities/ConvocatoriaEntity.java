@@ -7,7 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,7 +20,7 @@ public class ConvocatoriaEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_convocatoria")
-    private int idConvocatorai;
+    private long idConvocatoria;
 
     @NotNull
     @Size(min = 1, max=20)
@@ -34,6 +36,11 @@ public class ConvocatoriaEntity implements Serializable {
     @Size(min = 1, max=200)
     @Column(name="requisitos")
     private String requisitos;
+
+    @NotNull
+    @Size(min = 1, max=200)
+    @Column(name="estado_convocatoria")
+    private String estadoConvocatoria;
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-mm-dd")
@@ -52,5 +59,9 @@ public class ConvocatoriaEntity implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name="fecha_creacion")
     private Date fechaCreacion;
+
+    //relacion de convocatoria con startup (uno a mucho)
+    @OneToMany( mappedBy = "convocatoria")
+    private Collection<StartupEntity>startups;
 
 }

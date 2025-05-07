@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
 
 @Data
 @Entity
@@ -19,12 +21,12 @@ public class UsuarioEntity  implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id_usuario")
-    private int idUsuario;
+    private long idUsuario;
 
     @NotNull
     @Size(min = 1, max=20)
     @Column(name="nombre_usuario")
-    private String name;
+    private String nombreUsuario;
 
     @NotNull
     @Size(min = 1, max=50)
@@ -57,4 +59,13 @@ public class UsuarioEntity  implements Serializable {
     @Column(name = "foto_usuario", length = 200)
     private String fotoUsuario;
 
+
+    //relacion de usuarios con rol de (muchos a uno)
+    @ManyToOne()
+    @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
+    private RolEntity rol;
+
+    //Relacion de usuario con Monitorias(uno a muchos)
+    @OneToMany(mappedBy = "usuarioMonitoria",fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    private Collection<MonitoriaEntity> monitoriasUsuario;
 }
