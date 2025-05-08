@@ -3,64 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name='viewport' content="width=device-with, initial-scale=1.0">
-    <title>parte incial del sistema </title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Inicio </title>
+
+    <!-- este es para enlazar con fuentes externas -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- este es para la animacion de la pagina a esta va anidada un script que esta en el body -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- este es para enlazar con la libreria de iconos -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+    <!-- este es para enlazar con lla libreria de estilos con tailwindcs-->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
 </head>
-<body class=" font-[Poppins,sans-serif]">
+<body class=" font-[Poppins,sans-serif] ">
+
+<header th:replace="~{layout/layout :: navegacion}"></header>
 
 
-<div>
-   <div class="flex flex-row justify-around">
-        <div>
-            <img src="" alt="logo-pagina">
+<div class="flex flex-row h-[900px] pl-20 pr-20 ">
+    <div class="basis-1/2 flex flex-col justify-center items-center leading-6 ">
+
+        <div class="flex flex-col justify-center  ">
+            <p class="text-4xl font-bold">Donde las ideas toman forma y el <br> futuro empieza a construirse.</p>
+            <p class="text-4xl text-[#05A6A6] font-bold">Tu idea es el próximo <br>
+                gran cambio. Empieza hoy.</p>
+            <p class="text-sm font-light">Startups Tomistas: pequeños comienzos, grandes futuros.”</p>
+            <br>
+            <br>
+
+
+            <div class="flex flex-row justify-center gap-5 mt-8 items-center pr-20  " data-aos="fade-right">
+                <div class="text-center m-2">
+                    <p class="text-4xl font-semibold text-[#F29F05]">+120</p>
+                    <p class="font-thin leading-none ">Startups registradas</p>
+                </div>
+                <div class="text-center border-x border-x-[#000000] m-2">
+                    <p class="text-4xl font-semibold text-[#F29F05]">85%</p>
+                    <p class="font-thin leading-none">Fundadores son estudiantes activos</p>
+                </div>
+                <div class="text-center m-2">
+                    <p class="text-4xl font-semibold text-[#F29F05]">40%</p>
+                    <p class="font-thin leading-none">Proyectos liderados por mujeres</p>
+                </div>
+            </div>
+
+
         </div>
-       <nav>
-           <ul class="flex flex-row">
-               <li><a href="#">Inicio</a></li>
-               <li><a href="#">Emprendimientos</a></li>
-               <li><a href="#">Blog y Noticias</a></li>
-               <li><a href="#">Inicio Sesion </a></li>
-               <li><a href="#">Registar Startup</a></li>
-
-
-           </ul>
-       </nav>
-
-   </div>
 
 
 
-</div>
-<div class="flex flex-row">
+    </div>
+
+
+
     <div class="basis-1/2">
 
-        <div class=" flex flex-col justify-center m-8">
-            <p class="text-3xl font-bold">Donde las ideas toman forma y el futuro empieza a construirse.</p>
-            <p class="text-2xl text-[#05A6A6] font-bold">Tu idea es el próximo gran cambio. Empieza hoy.</p>
-            <p class="text-sm font-light">Startups Tomistas: pequeños comienzos, grandes futuros.”</p>
-
-        </div>
-        <iframe  src="https://lottie.host/embed/dce4c934-c2a6-4eaa-abd2-63ff52bfcbc0/KFHY93BlGq.json"></iframe>
-
-
-    </div>
-
-
-
-
-
-
-
-    <div class="basis-1/2"> segunda seccion
-        <div class="grid grid-cols-3 gap-4 m-10">
-            <div><a href="https://lordicon.com/">Icons by Lordicon.com</a></div>
-            <div>02</div>
-            <div>03</div>
+        <div class="grid grid-cols-3 gap-4 m-10 " >
+            <div class="flex flex-col gap-10  " >
+                <img class=" object-cover  rounded-full overflow-hidden w-[180px] h-[350px]" th:src="@{images/mujer1.jpg}">
+                <img class=" object-cover  rounded-full overflow-hidden w-[180px] h-[350px]" th:src="@{images/homnre.jpg}">
+            </div>
+            <div class="flex flex-col gap-10 mt-20   ">
+                <img class=" object-cover  rounded-full overflow-hidden w-[180px] h-[350px]" th:src="@{images/homnre2.jpg}">
+                <img class=" object-cover  rounded-full overflow-hidden w-[180px] h-[350px]" th:src="@{images/mujer1.jpg}">
+            </div>
+            <div class="flex flex-col gap-10 ">
+                <img class=" object-cover  rounded-full overflow-hidden w-[180px] h-[350px]" th:src="@{images/mujer2.jpg}">
+                <img class=" object-cover  rounded-full overflow-hidden w-[180px] h-[350px]" th:src="@{images/mujer1.jpg}">
+            </div>
         </div>
     </div>
 </div>
+<section class="bg-[#05A6A6]  flex flex-row p-10">
+    <div class="m-8">
+        <p class="font-thin text-white leading-none text-2xl tracking-wide">
+            ¿Por qué usar <span class="font-bold">EmprendeUSTA?</span>
+        </p>
+
+    </div>
+    <div data-aos="fade-up"
+         data-aos-duration="3000">
+        <lord-icon
+                src="https://cdn.lordicon.com/fcyboqbm.json"
+                trigger="loop"
+                delay="2000"
+                stroke="bold"
+                colors="primary:#121331,secondary:#eaf205"
+                style="width:70px;height:70px">
+        </lord-icon>
+        <p class="text-white font-bold">Dar visibilidad</p>
+        <p class="text-white font-thin ">a tu idea o startup ante la comunidad universitaria y externa.</p>
+
+    </div>
+    <div  data-aos="fade-down"
+          data-aos-duration="3000">
+        <lord-icon
+                src="https://cdn.lordicon.com/jdgfsfzr.json"
+                trigger="hover"
+                stroke="bold"
+                state="hover-conversation-alt"
+                colors="primary:#121331,secondary:#eaf205"
+                style="width:70px;height:70px">
+        </lord-icon>
+        <p class="text-white font-bold">Acceder a</p>
+        <p class="text-white font-thin ">a tu idea o startup ante la comunidad universitaria y externa..</p>
+
+    </div>
+    <div  data-aos="fade-up"
+          data-aos-duration="3000">
+        <lord-icon
+                src="https://cdn.lordicon.com/rpviwvwn.json"
+                trigger="hover"
+                stroke="bold"
+                colors="primary:#121331,secondary:#eaf205"
+                style="width:70px;height:70px">
+        </lord-icon>
+        <p class="text-white font-bold">Conectarte a</p>
+        <p class="text-white font-thin">con aliados, mentores y otros emprendedores..</p>
+
+    </div>
+
+
+
+</section>
+<section class="flex flex-row h-[600px]">
+    <div class="basis-1/2 flex flex-col justify-center items-center">
+        <div class="relative w-[400px] h-[400px]">
+            <img th:src="@{images/personasSeccion3.jpg}" alt="Categorías de startups"
+                 class="w-full h-full object-cover rounded-full shadow-lg" />
+
+            <div class="absolute top-4 left-4 bg-[#F29F05] text-white w-24 h-24 rounded-full flex items-center justify-center shadow-md text-center p-5">
+                <div  data-aos="flip-left" data-aos-duration="3000">
+                    <p class="text-lg font-bold leading-none">5</p>
+                    <p class="text-xs leading-none">categorías</p>
+                </div>
+            </div>
+            <img th:src="@{images/cohete.png}" alt="Cohete"
+                 class=" absolute bottom-[-20px] right-[-100px] w-[280px] h-auto" data-aos="fade-down-left" data-aos-duration="2000"/>
+
+        </div>
+    </div>
+    <div class="basis-1/2 flex flex-col justify-center content-center m-20">
+
+       <div class="leading-none">
+           <p class="text-2xl text-[#000000]">Algunas de nuestras.</p>
+           <p class="text-2xl text-[#F29F05] font-bold">categorías de startups.</p>
+       </div>
+
+        <div class="mt-3">
+            <p class="text-justify text-base leading-relaxed text-gray-800 mb-10">
+                En la Universidad Santo Tomás, la innovación no es solo una meta: es una forma de transformar la realidad.
+                Cada una de nuestras startups nace del compromiso con el cambio, la investigación aplicada y el deseo de impactar positivamente a la sociedad.
+                <br><br>
+                Desde la tecnología que redefine cómo nos comunicamos, hasta propuestas que generan impacto social, económico y ambiental, nuestros emprendedores se atreven a imaginar un futuro diferente… y lo construyen.
+            </p>
+            <a class="text-[#F29F05] border border-[#F29F05] pt-5 pb-5 pr-10 pl-10 mt-10" th:href="@{/}">ver categorias</a>
+
+        </div>
+
+
+    </div>
+
+</section>
+<section class="flex flex-col bg-[#F2F767] rounded-md shadow-lg mr-40 ml-40 p-10">
+
+    <div class=" basis-1/2">
+        <p class="text-3xl text-[#05A6A6] text-semibold">¡Entérate de lo que estamos logrando!</p>
+        <p class="text-thin text-sm">En nuestro portal encontrarás noticias frescas sobre nuestros proyectos, logros estudiantiles, eventos Tomasinos y todo lo que mueve nuestra pasión por transformar el mundo. ¡No te lo pierdas!</p>
+        <a class="bg-[#F29F05] p-10 " th:href="{/blogNoticias}">ver noticias</a>
+    </div>
+    <div class="basis-1/2">
+        <img th:scr="@{/images/mujeer-libros.png}">
+
+    </div>
+
+</section>
+
+
+<!--ANIMACIONES-->
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 
 </body>
 </html>
