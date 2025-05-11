@@ -7,8 +7,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -40,7 +38,6 @@ public class StartupEntity implements Serializable {
     @Column(name = "logo_startup")
     private String logo;
 
-
     //relacion de startup con convocatoria(muchos a uno)
     @ManyToOne()
     @JoinColumn(name = "id_convocatoria", referencedColumnName = "id_convocatoria")
@@ -50,5 +47,9 @@ public class StartupEntity implements Serializable {
     @OneToMany(mappedBy = "startupMonitoria", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Collection<MonitoriaEntity> monitoriasStartup;
 
+    //relacion de startup con noticias(muchos a uno)
+    @ManyToOne()
+    @JoinColumn(name = "id_noticias", referencedColumnName = "id_noticias")
+    private NoticiaEntity noticias;
 
 }
