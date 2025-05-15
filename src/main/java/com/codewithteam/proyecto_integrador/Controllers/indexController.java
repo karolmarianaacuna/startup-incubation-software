@@ -45,13 +45,13 @@ public class indexController {
         return "/fundadores/fundadores";
     }
 
-    @GetMapping("/pruebaStartups")
-    public String Startups(Model model) {
-
-        List<StartupEntity> startups = startupService.findAll();
-        model.addAttribute("startups", startups);
-        return "/startups/startups";
-    }
+//    @GetMapping("/pruebaStartups")
+//    public String Startups(Model model) {
+//
+//        List<StartupEntity> startups = startupService.findAll();
+//        model.addAttribute("startups", startups);
+//        return "/startups/startups";
+//    }
 }
 
 

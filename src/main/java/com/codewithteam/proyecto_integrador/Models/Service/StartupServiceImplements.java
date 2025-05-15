@@ -49,6 +49,12 @@ public class StartupServiceImplements implements StartupService {
     }
 
     @Override
+    public List<StartupEntity> findByNombre(String nombreStartup) {
+        return findByNombre(nombreStartup);
+    }
+
+
+    @Override
     public List<Object[]> countStartupsBySector() {
         return List.of();
     }

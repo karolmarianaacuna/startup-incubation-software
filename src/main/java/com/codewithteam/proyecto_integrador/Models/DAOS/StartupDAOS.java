@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -23,8 +24,26 @@ public interface StartupDAOS extends CrudRepository<StartupEntity, Long> {
 
     // Buscar por sector (exacto)
     @Transactional
-    @Query("SELECT s FROM StartupEntity s WHERE s.sectorStartup = ?1")
+    @Query("SELECT s FROM StartupEntity s WHERE s.sectorStartup = ?")
     List<StartupEntity> buscarPorSector(String sectorStartup);
+
+
+//    // Buscar por sector (exacto)
+//    @Transactional
+//    @Query("SELECT s FROM StartupEntity s WHERE s.nombreStartup LIKE ")
+//    List<StartupEntity> buscarPorNombre(String nombreStartup);
+
+
+
+//
+//    @Transactional
+//    @Query("SELECT s FROM StartupEntity s WHERE LOWER(s.nombreStartup) LIKE LOWER(CONCAT('%', :nombreStartup, '%'))")
+//    List<StartupEntity> buscarNombre(@Param("nombreStartup") String nombreStartup);
+
+
+
+
+
 
 
 }

@@ -12,39 +12,111 @@
 
     <!-- este es para enlazar con la libreria de iconos -->
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
     <!-- este es para enlazar con la libreria de estilos con tailwindcs-->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-[Poppins,sans-serif]">
-    <header th:replace="~{layout/layout :: navegacion}"></header>
+<header th:replace="~{layout/layout :: navegacion}"></header>
 
-    <!-- Sección de la imagen -->
-    <section class="w-full h-[600px] relative mb-12  ">
-        <img src="/images/personasSeccion3.jpg" alt="Bienvenida a noticias"
-             class="absolute top-0 right-0 w-[85%] h-full object-cover z-0 "/>
-        <div class="absolute top-1/4 left-20 bg-teal-500 text-white p-8 w-[500px] h-[180px] rounded shadow-lg
-                z-10 flex items-center justify-center transition-transform duration-700 hover:scale-105">
-            <p class="text-2xl font-semibold text-center">
-                Bienvenido a nuestro espacio de noticias, ideas e inspiración.
-            </p>
+<!-- Sección de últimas noticias -->
+<section class="ml-20 mr-20 mt-10 px-6">
+    <div class="grid grid-cols-4 grid-rows-2 gap-6 h-[600px]">
+
+        <!-- Tarjeta 1: Grande (2x2) -->
+        <div class="relative col-span-2 row-span-2 group rounded-xl overflow-hidden">
+            <img th:src="${noticias[0]?.fotoNoticia}" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-purple-700/60 via-transparent to-transparent transition-all duration-300 group-hover:bg-purple-800/60 p-6 flex flex-col justify-end text-white">
+                <h3 class="text-2xl font-bold mb-2" th:text="${noticias[0]?.nombreNoticia}"></h3>
+                <p class="text-sm mb-2" th:text="${noticias[0]?.descripcionNoticia}"></p>
+                <span class="text-xs italic" th:text="${#dates.format(noticias[0]?.fechaCreacion, 'dd MMMM yyyy')}"></span>
+            </div>
         </div>
-    </section>
-    <!-- Sección de listar las noticias -->
-    <h2 class="text-2xl font-bold ml-20 mt-20 border-b-4 border-[#EAF205] inline-block px-6">
-        Últimas noticias
-    </h2>
-        <section class="grid md:grid-cols-3 gap-6 mx-40 my-10">
 
-        <div class="text-black shadow-md overflow-hidden "
+        <!-- Tarjeta 2: Derecha superior -->
+        <div class="relative col-span-2 row-span-1 bg-[#05A6A6] rounded-xl p-6 text-black hover:brightness-105 transition-all">
+            <div class="absolute top-4 right-4 text-xl">↗</div>
+            <h3 class="text-xl font-semibold mb-2" th:text="${noticias[1]?.nombreNoticia}"></h3>
+            <p class="text-base" th:text="${noticias[1]?.descripcionNoticia}"></p>
+        </div>
+
+        <!-- Tarjeta 3: Derecha inferior -->
+        <div class="relative col-span-2 row-span-1 bg-[#232B59] rounded-xl p-6 text-white hover:brightness-110 transition-all">
+            <div class="absolute top-4 right-4 text-xl">↗</div>
+            <h3 class="text-xl font-semibold mb-2" th:text="${noticias[2]?.nombreNoticia}"></h3>
+            <p class="text-base" th:text="${noticias[2]?.descripcionNoticia}"></p>
+        </div>
+
+    </div>
+</section>
+<!-- Sección de iniciativas -->
+<section class="py-10 px-20 mt-10">
+    <h2 class="text-xl font-bold text-black mb-4">INICIATIVAS</h2>
+    <hr class="border-t border-purple-300 mb-6" />
+
+    <div class="grid grid-cols-4 gap-4">
+        <!-- Tarjeta 1 -->
+        <div class="bg-gray-100 flex items-center rounded-md shadow-sm">
+            <div class="flex items-center gap-4 p-4">
+                <div class="bg-[#232B59] text-white w-10 h-10 flex items-center justify-center rounded-full">
+                    <i class="fas fa-file-alt text-lg"></i>
+                </div>
+                <span class="font-semibold text-gray-800">Informe</span>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="bg-gray-100 flex items-center rounded-md shadow-sm">
+            <div class="flex items-center gap-4 p-4">
+                <div class="bg-[#232B59] text-white w-10 h-10 flex items-center justify-center rounded-full">
+                    <i class="fas fa-calendar-alt text-lg"></i>
+                </div>
+                <span class="font-semibold text-gray-800">Latam Weeks</span>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="bg-gray-100 flex items-center rounded-md shadow-sm">
+            <div class="flex items-center gap-4 p-4">
+                <div class="bg-[#232B59] text-white w-10 h-10 flex items-center justify-center rounded-full">
+                    <i class="fas fa-podcast text-lg"></i>
+                </div>
+                <span class="font-semibold text-gray-800">Cápsulas y RRSS</span>
+            </div>
+        </div>
+
+        <!-- Tarjeta 4 -->
+        <div class="bg-gray-100 flex items-center rounded-md shadow-sm">
+            <div class="flex items-center gap-4 p-4">
+                <div class="bg-[#232B59] text-white w-10 h-10 flex items-center justify-center rounded-full">
+                    <i class="fas fa-book-open text-lg"></i>
+                </div>
+                <span class="font-semibold text-gray-800">Newsletter</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Sección de listar las noticias -->
+<section class="py-10 px-20 mt-10">
+    <h2 class="text-xl font-bold text-black mb-2">NOTICIAS</h2>
+    <hr class="border-t border-purple-300 mb-6" />
+
+    <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-black shadow-md overflow-hidden"
              th:each="noticia : ${noticias}">
             <img
                     th:src="${noticia.fotoNoticia}"
                     alt="Imagen de la noticia"
-                    class="w-full h-[250px]  object-cover object-center rounded-lg"
+                    class="w-full h-[250px] object-cover object-center rounded-lg"
             />
             <div class="p-4">
-                <p class="text-base font-semibold text-gray-800  mb-1">
+                <p class="text-base font-semibold text-gray-800 mb-1">
                     [[${noticia.nombreNoticia}]]
                 </p>
                 <p class="text-gray-500 text-xs mb-1">
@@ -55,69 +127,14 @@
                 </p>
             </div>
         </div>
-    </section>
-    <div class="text-center">
-        <span class="block mx-auto w-[600px] h-1 bg-[#EAF205] mt-2 rounded"></span>
     </div>
-
-    <!-- Sección de últimas noticias -->
-    <section class="ml-20 mr-20 mt-10 px-6">
-
-        <div class="grid grid-cols-3 grid-rows-3 gap-6  p-40">
-            <!-- T1: Grande (2x2) -->
-            <div class="relative col-span-2 row-span-2 group">
-                <img th:src="${noticias[0]?.fotoNoticia}" class="w-full h-full object-cover rounded-xl" />
-                <div class="absolute inset-0 bg-transparent group-hover:bg-cyan-500 bg-opacity-40 transition-all duration-300 rounded-xl p-6 flex flex-col justify-end text-white">
-                    <h3 class="text-xl font-bold mb-2" th:text="${noticias[0]?.nombreNoticia}"></h3>
-                    <p class="text-sm mb-2" th:text="${noticias[0]?.descripcionNoticia}"></p>
-                    <span class="text-xs italic" th:text="${#dates.format(noticias[0]?.fechaCreacion, 'dd MMMM yyyy')}"></span>
-                </div>
-            </div>
-
-            <!-- T2: Mediana (1x2) -->
-            <div class="relative col-start-3 row-start-1 row-span-2 group">
-                <img th:src="${noticias[1]?.fotoNoticia}" class="absolute inset-0 w-full h-full object-cover rounded-xl" />
-                <div class="absolute inset-0 bg-transparent group-hover:bg-cyan-400 bg-opacity-40 transition-all duration-300 rounded-xl p-4 flex flex-col justify-end text-black">
-                    <h3 class="font-bold text-lg" th:text="${noticias[4]?.nombreNoticia}"></h3>
-                    <p class="text-sm" th:text="${noticias[4]?.descripcionNoticia}"></p>
-                    <span class="text-xs italic mt-1" th:text="${#dates.format(noticias[4]?.fechaCreacion, 'dd MMMM yyyy')}"></span>
-                </div>
-            </div>
-            <!-- T3: Pequeña (1x1) -->
-            <div class="relative col-start-1 row-start-3 aspect-square group overflow-hidden rounded-xl">
-                <img th:src="${noticias[2]?.fotoNoticia}" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-transparent group-hover:bg-cyan-400 bg-opacity-40 transition-all duration-300 rounded-xl"></div>
-            </div>
-            <!-- T3: Pequeña (1x1) -->
-            <div class="relative col-start-1 row-start-3 aspect-square group overflow-hidden rounded-xl">
-                <img th:src="${noticias[2]?.fotoNoticia}" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-transparent group-hover:bg-cyan-400 bg-opacity-40 transition-all duration-300 rounded-xl"></div>
-            </div>
-
-            <!-- T3: Pequeña (1x1) -->
-            <div class="relative col-start-1 row-start-3 aspect-square group overflow-hidden rounded-xl">
-                <img th:src="${noticias[2]?.fotoNoticia}" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-transparent group-hover:bg-cyan-400 bg-opacity-40 transition-all duration-300 rounded-xl"></div>
-            </div>
-
-            <!-- T4: Pequeña (1x1) -->
-            <div class="relative col-start-2 row-start-3 aspect-square group overflow-hidden rounded-xl">
-                <img th:src="${noticias[3]?.fotoNoticia}" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-transparent group-hover:bg-cyan-400 bg-opacity-40 transition-all duration-300 rounded-xl"></div>
-            </div>
-
-            <!-- T5: Pequeña (1x1) -->
-            <div class="relative col-start-3 row-start-3 aspect-square group overflow-hidden rounded-xl">
-                <img th:src="${noticias[4]?.fotoNoticia}" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-transparent group-hover:bg-cyan-400 bg-opacity-40 transition-all duration-300 rounded-xl"></div>
-            </div>
-        </div>
-    </section>
+</section>
 
 
 
 
-    <hr class="my-12 border-t-4 border-yellow-400 w-2/5 mx-auto"> <!-- Aumenté my-6 a my-12 -->
+
+<hr class="my-12 border-t-4 border-yellow-400 w-2/5 mx-auto"> <!-- Aumenté my-6 a my-12 -->
 
 
 

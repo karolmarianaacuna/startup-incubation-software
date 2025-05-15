@@ -25,6 +25,11 @@ public class StartupEntity implements Serializable {
     private String nombreStartup;
 
     @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "correo_startup")
+    private String correoStartup;
+
+    @NotNull
     @Size(min = 1, max = 500)
     @Column(name = "descripcion_startup")
     private String descripcionStartup;
@@ -33,6 +38,16 @@ public class StartupEntity implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "sector_startup")
     private String sectorStartup;
+
+    @NotNull
+    @Size(min = 1, max = 1000)
+    @Column(name = "propuesta_valor")
+    private String propuestaValor;
+
+    @NotNull
+    @Size(min = 1, max = 1000)
+    @Column(name = "problematica")
+    private String problematica;
 
     @Size(max = 200)
     @Column(name = "logo_startup")
