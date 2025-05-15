@@ -86,6 +86,26 @@
 </section>
 <section class="bg-[#F1F1F1]">
 
+    <div class="grid md:grid-cols-3 gap-6 mx-40 my-10">
+        <div class="text-black shadow-md overflow-hidden "
+             th:each="startup : ${startups}">
+            <img
+                    th:src="${startup.logo}"
+                    alt="Imagen de la noticia"
+                    class="w-full h-[250px]  object-cover object-center rounded-lg"
+            />
+            <div class="p-4">
+                <p class="text-base font-semibold text-gray-800  mb-1">
+                    [[${startup.nombreStartup}]]
+                </p>
+                <p class="text-gray-500 text-xs mb-1">
+                    [[${startup.descripcionStartup}]]
+                </p>
+
+            </div>
+        </div>
+    </div>
+
 
 </section>
 
