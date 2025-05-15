@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title><!-- este es para enlazar con fuentes externas -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- este es para la animacion de la pagina a esta va anidada un script que esta en el body -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- este es para enlazar con la libreria de iconos -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+    <!-- este es para enlazar con lla libreria de estilos con tailwindcs-->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-[Poppins,sans-serif] ">
+<header th:replace="~{layout/layout :: navegacion}"></header>
+<div class="flex flex-row m-20 h-[400px] ">
+    <div class="w-[50%]">
+        <div class="flex flex-col justify-center">
+            <p class="text-3xl font-bold text-[#232B59]" >Impulsa el talento de nuestra U</p>
+            <p class="text-2xl font-bold text-[#F29F05] mr-10" >descubre, apoya y conecta con los startups que están transformando el futuro.</p>
+
+            <p class="font-thin mr-10 mt-5 text-justify">Impulsa la innovación desde hoy. Sé parte del cambio apoyando ideas que no solo buscan crecer, sino transformar positivamente nuestro entorno. Cada startup representa una visión del futuro, y tú puedes ser el impulso que necesitan para convertir sus sueños en soluciones que generen un impacto real en el mundo.</p>
+
+
+        </div>
+        <a class="bg-[#F29F05] text-white font-bold px-8 py-4 rounded inline-block mt-6 transition-transform transform hover:scale-105 hover:bg-[#d68704]" th:href="@{/blogNoticias}">
+             ver Startups
+        </a>
+    </div>
+    <div class="w-[50%] relative">
+
+        <img th:src="@{/images/startupsPersonas.png}"  class="absolute top-[0px] right-[40px] h-[480px]">
+        <img  th:src="@{images/arco.png}" alt="arco" class="absolute bottom-[-50px]  left-[80px] w-[200px]" data-aos="flip-up" data-aos-duration="3000" />
+        <img  th:src="@{images/moneda.png}" alt="Dinero" class="absolute top-[0px] left-[80px]  w-[200px]  " />
+        <img  th:src="@{images/moneda.png}" alt="Dinero" class="absolute top-[0px] right-[-80px]  w-[200px]" />
+        <img  th:src="@{images/flecha.png}" alt="flecha" class="absolute bottom-[0px] right-[0px] w-[120px] aos-init aos-animate " data-aos="flip-up" data-aos-duration="3000"/>
+
+
+
+    </div>
+</div>
+<section class=" bg-[#F4F87B] p-20 ">
+    <div class="flex flex-col justify-center items-center mb-10">
+        <p class="text-3xl font-bold text-[#05A6A6]" >Descubre Startups con Potencial para Ti</p>
+        <p class="font-thin  text-center">Sumérgete en un espacio donde las ideas innovadoras toman forma. Aquí podrás encontrar startups que están transformando el mundo, y quizás, el negocio perfecto en el que podrías inverti</p>
+
+    </div>
+    <div class="flex flex-row  gap-5">
+        <div class="relative w-full max-w-md">
+            <input
+                    type="text"
+                    placeholder="Buscar..."
+                    class="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+            />
+            <svg
+                    class="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+            >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 3.5a7.5 7.5 0 0013.15 13.15z" />
+            </svg>
+        </div>
+        <input
+                type="text"
+                placeholder="categoria"
+                class="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+        />
+        <input
+                type="text"
+                placeholder="Etapa de inversion"
+                class="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+        />
+
+
+
+    </div>
+
+</section>
+<section class="bg-[#F1F1F1]">
+
+
+</section>
+
+<!--ANIMACIONES-->
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+
+</body>
+</html>
