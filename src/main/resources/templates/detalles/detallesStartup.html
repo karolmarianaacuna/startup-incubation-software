@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+    <body class="font-[Poppins,sans-serif] ">
+    <header th:replace="~{layout/layout :: navegacion}"></header>
+    <div class="w-full ">
+        <iframe
+                class="w-full h-[500px]"
+                th:src="'https://www.youtube.com/embed/' + ${#strings.substringAfter(startup.video, 'v=')} + '?autoplay=1&mute=1'"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+    </div>
+    <div class="border  grid grid-cols-3 " th:each="startup : ${startup}">
+        <img th:src="${startup.logo}" class="w-[100px] object-cover" >
+
+
+    </div>
+
+    <h1 th:text="${startup.nombreStartup}">Nombre</h1>
+    <p><strong>Categoría:</strong> <span th:text="${startup.sectorStartup}"></span></p>
+    <p><strong>Descripción:</strong> <span th:text="${startup.descripcionStartup}"></span></p>
+    <p><strong>Emprendedor:</strong> <span th:text="${startup.propuestaValor}"></span></p>
+    <p><strong>Estado:</strong> <span th:text="${startup.problematica}"></span></p>
+
+    <footer th:replace="~{layout/layout :: footer}"></footer>
+    </body>
+</html>

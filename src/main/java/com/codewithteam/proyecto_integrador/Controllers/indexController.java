@@ -2,6 +2,7 @@ package com.codewithteam.proyecto_integrador.Controllers;
 
 import com.codewithteam.proyecto_integrador.Entities.NoticiaEntity;
 import com.codewithteam.proyecto_integrador.Entities.StartupEntity;
+import com.codewithteam.proyecto_integrador.Entities.UsuarioEntity;
 import com.codewithteam.proyecto_integrador.Models.Service.NoticiaService;
 import com.codewithteam.proyecto_integrador.Models.Service.StartupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,9 @@ public class indexController {
 
 
     @GetMapping("/pruebaRegistrer")
-    public String registro() {
+    public String registro(Model model) {
+        model.addAttribute("UsuarioEntity", new UsuarioEntity());
+
         // Este es el nombre del html
         return "/registroInicio/registro";
     }
@@ -36,7 +39,15 @@ public class indexController {
     @GetMapping("/pruebaLogin")
     public String Login() {
         // Este es el nombre del html
+
         return "/registroInicio/login";
+    }
+
+    @GetMapping("/pruebadashboardEmeprendedor")
+    public String Emprendedor() {
+        // Este es el nombre del html
+
+        return "/dashboard/dashboardEmprendedor";
     }
 
     @GetMapping("/pruebaFundadores")
@@ -45,13 +56,6 @@ public class indexController {
         return "/fundadores/fundadores";
     }
 
-//    @GetMapping("/pruebaStartups")
-//    public String Startups(Model model) {
-//
-//        List<StartupEntity> startups = startupService.findAll();
-//        model.addAttribute("startups", startups);
-//        return "/startups/startups";
-//    }
 }
 
 

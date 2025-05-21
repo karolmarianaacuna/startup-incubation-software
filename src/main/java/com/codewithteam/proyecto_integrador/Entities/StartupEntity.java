@@ -53,6 +53,10 @@ public class StartupEntity implements Serializable {
     @Column(name = "logo_startup")
     private String logo;
 
+    @Size(max = 200)
+    @Column(name = "enlace_video")
+    private String video;
+
     //relacion de startup con convocatoria(muchos a uno)
     @ManyToOne()
     @JoinColumn(name = "id_convocatoria", referencedColumnName = "id_convocatoria")

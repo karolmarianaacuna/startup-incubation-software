@@ -1,21 +1,25 @@
 package com.codewithteam.proyecto_integrador.Models.DAOS;
 
 import com.codewithteam.proyecto_integrador.Entities.ConvocatoriaEntity;
-import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface ConvocatoriaDAOS extends CrudRepository<ConvocatoriaEntity,Long> {
 
-    //Buscar convocatorias portítulo
+    // esto es lo mismo que hacer la consulta
+     List<ConvocatoriaEntity> findAll();
+
+     @Transactional
+    @Query("SELECT CO FROM ConvocatoriaEntity  CO WHERE CO.idConvocatoria=?1")
+     public ConvocatoriaEntity verDetallesPorId(long id);
+
     @Transactional
-    @Query()
-    List<ConvocatoriaEntity> findByTitulo(String titulo);
-
-
-
+    @Query("SELECT c FROM ConvocatoriaEntity c WHERE c.estadoConvocatoria = :estado")
+    List<ConvocatoriaEntity> categoriaActiva(@Param("estado") String estado);
 
 
 }

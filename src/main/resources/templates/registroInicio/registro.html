@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name='viewport' content="width=device-with, initial-scale=1.0">
-    <title>Login </title>
-
-    <!-- este es para enlazar con fuentes externas -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- este es para la animacion de la pagina a esta va anidada un script que esta en el body -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <!-- este es para enlazar con la libreria de iconos -->
-    <script src="https://cdn.lordicon.com/lordicon.js"></script>
-
-    <!-- este es para enlazar con lla libreria de estilos con tailwindcs-->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-
-</head>
+<head th:replace="~{layout/layout :: head}"></head>
 <body class=" font-[Poppins,sans-serif]  ">
 <div class="flex flex-row items-center justify-start m-5">
-    <img th:src="@{images/logoSinFondo.png}"  alt="logo" class=" w-[600px] ml-10 mt-10">
+    <a th:href="@{/}"><img th:src="@{images/logoSinFondo.png}"  alt="logo" class=" w-[600px] ml-10 mt-10"></a>
 </div>
-<div class="flex flex-row h-[300px]">
-    <div class="w-[40%] ml-[100px] mt-10 " data-aos="flip-left" data-aos-duration="3000">
-        <p class="text-[#05A6A6] text-3xl font-bold">Únete a la comunidad de startups <br>
-            <span class="text-[#F29F05] text-3xl font-bold">que están cambiando el mundo</span></p>
-        <p  class="text-sm font-thin">Regístrate y haz parte del ecosistema que impulsa ideas con propósito.</p>
-        <div class="flex flex-col m-10">
+<div class="flex flex-row h-[320px]">
+    <div class="w-[40%] ml-40 " data-aos="flip-left" data-aos-duration="3000">
+        <div class=" mx-auto mb-10 p-8 bg-white shadow-md rounded-md">
+            <p class="text-[#05A6A6] text-2xl font-bold text-center leading-tight mb-4">
+                Únete a la comunidad de startups <br>
+                <span class="text-[#F29F05]">que están cambiando el mundo</span>
+            </p>
 
-            <input type="text" name="nombre" placeholder="Tu nombre"
-                   class=" w-full bg-[#F1F1F1] m-5 p-3" />
+            <p class="text-sm font-thin text-center mb-6">
+                Regístrate y haz parte del ecosistema que impulsa ideas con propósito.
+            </p>
 
-            <div class="flex flex-row gap-2">
-                <input type="text" name="nombre" placeholder="Tu nombre"
-                       class=" w-full bg-[#F1F1F1]" />
-                <input type="text" name="nombre" placeholder="Tu nombre"
-                       class=" w-full bg-[#F1F1F1]" />
-            </div>
+            <form th:object="${UsuarioEntity}" method="post" class="flex flex-col gap-4">
 
+                <input type="text" th:field="*{nombreUsuario}" placeholder="Tu nombre"
+                       class="w-full bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" />
 
+                <input type="email" th:field="*{correoUsuario}" placeholder="Correo electrónico"
+                       class="w-full bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" />
 
-            <input type="email" name="correo" placeholder="correo electronico"
-                   class=" w-full bg-[#F1F1F1] m-5 p-3  " />
+                <input type="password" th:field="*{contrasenaUsuario}" placeholder="Contraseña"
+                       class="w-full bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" />
 
+                <input type="number" th:field="*{celularUsuario}" placeholder="Celular"
+                       class="w-full bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" />
 
+                <input type="number" th:field="*{identificacionUsuario}" placeholder="Identificación"
+                       class="w-full bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" />
 
-            <button type="submit"
-                    class="bg-[#F0F650] text-[#232B59] px-6 py-4  transition">
-                Registrar Startup
-            </button>
+                <select th:field="*{Rol}" required
+                        class="w-full bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]">
+                    <option value="">-- Selecciona un rol --</option>
+                    <option value="inversionista">Inversionista</option>
+                    <option value="emprendedor">Emprendedor</option>
+                </select>
+
+                <button type="submit"
+                        class="bg-[#F0F650] text-[#232B59] font-semibold px-6 py-3 rounded-md hover:bg-yellow-300 transition">
+                    Registrarse
+                </button>
+
+                <div class="text-center mt-2">
+                    <p class="text-sm font-thin">
+                        ¿Ya tienes una cuenta?
+                        <a class="text-[#05A6A6] font-semibold hover:underline" th:href="@{/pruebaLogin}">
+                            Inicia sesión
+                        </a>
+                    </p>
+                </div>
+            </form>
         </div>
-
 
 
     </div>
@@ -63,19 +64,19 @@
         <div class="relative ">
             <!-- Fondo completo -->
             <img th:src="@{images/elipseRegistro.png}" alt="fondo"
-                 class="absolute top-[0] right-[0px] h-[600px]"/>
+                 class="absolute top-[100px] right-[0px] h-[600px]"/>
 
 
 
 
 
-            <img  th:src="@{images/flecha.png}" alt="Dinero" class="absolute top-[-20px] right-[50px] w-[100px] " data-aos="flip-up" data-aos-duration="3000"/>
+            <img  th:src="@{images/flecha.png}" alt="Dinero" class="absolute top-[100px] right-[50px] w-[100px] " data-aos="flip-up" data-aos-duration="3000"/>
 
-            <img  th:src="@{images/arco.png}" alt="arco" class="absolute top-[40px] right-[450px] w-[250px]" data-aos="flip-up" data-aos-duration="3000" />
+            <img  th:src="@{images/arco.png}" alt="arco" class="absolute top-[200px] right-[450px] w-[250px]" data-aos="flip-up" data-aos-duration="3000" />
 
 
-            <img  th:src="@{images/monedas.png}" alt="Dólar" class="absolute top-[300px] right-[480px] w-[200px]" data-aos="flip-up" data-aos-duration="3000"/>
-            <img  th:src="@{images/personas.png}" alt="personasLogin" class="absolute top-[80px] right-[10px] h-[520px]" data-aos="flip-up" data-aos-duration="3000"/>
+            <img  th:src="@{images/monedas.png}" alt="Dólar" class="absolute top-[450px] right-[480px] w-[200px]" data-aos="flip-up" data-aos-duration="3000"/>
+            <img  th:src="@{images/personas.png}" alt="personasLogin" class="absolute top-[180px] right-[10px] h-[520px]" data-aos="flip-up" data-aos-duration="3000"/>
 
 
         </div>

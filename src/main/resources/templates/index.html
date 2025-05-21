@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name='viewport' content="width=device-with, initial-scale=1.0">
-    <title>Inicio </title>
-
-    <!-- este es para enlazar con fuentes externas -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- este es para la animacion de la pagina a esta va anidada un script que esta en el body -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <!-- este es para enlazar con la libreria de iconos -->
-    <script src="https://cdn.lordicon.com/lordicon.js"></script>
-
-    <!-- este es para enlazar con lla libreria de estilos con tailwindcs-->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-
-</head>
+<head th:replace="~{layout/layout :: head}"></head>
 <body class=" font-[Poppins,sans-serif] ">
 
 <header th:replace="~{layout/layout :: navegacion}"></header>
@@ -237,6 +217,43 @@
     <div class="flex flex-row justify-center items-center gap-5">
         <p class="text-4xl text-[#232B59] font-semibold mt-8">Emprendedores <br> <span class="text-[#F29F05] font-bold"> Tomasinos </span> </p>
         <p class="mr-30 pt-10 text-justify ">Desde ideas simples hasta soluciones disruptivas, fomentamos el espíritu emprendedor para que surjan startups con propósito, capaces de transformar su entorno, resolver problemas reales y generar un impacto positivo en la sociedad. Creemos en el poder de la innovación colaborativa, el acompañamiento estratégico y la formación integral como base para construir emprendimientos sostenibles y con sentido.</p>
+    </div>
+    <div class="grid grid-cols-3 gap-5 pt-10 pl-10 pr-10">
+        <div>
+            <div class="flex flex-row justify-start gap-5 ml-5 items-center p-5">
+                <img th:src="@{/images/logoColciencias.png}">
+                <p class="font-bold">Ana Martínez, <br>
+                    Fundadora de FitLife</p>
+            </div>
+            <div class="bg-[#4BBFBF] rounded-3xl p-5">
+                <p class="text-white">"Participar en esta comunidad me permitió validar mi idea, mejorar mi pitch y conectarme con otros emprendedores que ahora son mis socios."</p>
+            </div>
+
+
+        </div>
+        <div>
+            <div class="flex flex-row justify-start gap-5 ml-5 items-center p-5" >
+                <img th:src="@{/images/logoColciencias.png}">
+                <p class="font-bold ">Ana Martínez, <br>
+                    Fundadora de FitLife</p>
+            </div>
+            <div class="bg-[#4BBFBF] rounded-3xl p-5">
+                <p class="text-white">"Participar en esta comunidad me permitió validar mi idea, mejorar mi pitch y conectarme con otros emprendedores que ahora son mis socios."</p>
+            </div>
+
+        </div>
+        <div>
+            <div class="flex flex-row justify-start gap-5 ml-5 items-center p-5">
+                <img th:src="@{/images/logoColciencias.png}">
+                <p class="font-bold ">Ana Martínez, <br>
+                    Fundadora de FitLife</p>
+            </div>
+            <div class="bg-[#4BBFBF] rounded-3xl p-5">
+                <p class="text-white">"Participar en esta comunidad me permitió validar mi idea, mejorar mi pitch y conectarme con otros emprendedores que ahora son mis socios."</p>
+            </div>
+
+        </div>
+
     </div>
 
 
