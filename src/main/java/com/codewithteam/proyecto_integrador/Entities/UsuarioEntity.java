@@ -19,7 +19,7 @@ public class UsuarioEntity  implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private long idUsuario;
 
@@ -27,6 +27,16 @@ public class UsuarioEntity  implements Serializable {
     @Size(min = 1, max=20)
     @Column(name="nombre_usuario")
     private String nombreUsuario;
+
+    @NotNull
+    @Size(min = 1, max=20)
+    @Column(name="profesion_usuario")
+    private String profesionUsuario;
+
+    @NotNull
+    @Size(min = 1, max=20)
+    @Column(name="Cargo_usuario")
+    private String Cargo;
 
     @NotNull
     @Size(min = 1, max=50)

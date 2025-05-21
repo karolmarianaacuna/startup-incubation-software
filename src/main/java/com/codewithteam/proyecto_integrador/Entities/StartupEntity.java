@@ -35,6 +35,22 @@ public class StartupEntity implements Serializable {
     private String descripcionStartup;
 
     @NotNull
+    @Size(min = 1, max = 500)
+    @Column(name = "etapa_startup")
+    private String etapaStartup;
+
+
+    @Size(min = 1, max = 500)
+    @Column(name = "ubicacion_startup")
+    private String ubicacionStartup;
+
+
+    @Size(min = 1, max = 500)
+    @Column(name = "url_paginaWeb")
+    private String urlPaginaWeb;
+
+
+    @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "sector_startup")
     private String sectorStartup;
@@ -70,5 +86,7 @@ public class StartupEntity implements Serializable {
     @ManyToOne()
     @JoinColumn(name = "id_noticias", referencedColumnName = "id_noticias")
     private NoticiaEntity noticias;
+
+
 
 }

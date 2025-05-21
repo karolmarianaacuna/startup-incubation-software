@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name='viewport' content="width=device-with, initial-scale=1.0">
-    <title>Login </title>
-
-    <!-- este es para enlazar con fuentes externas -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- este es para la animacion de la pagina a esta va anidada un script que esta en el body -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <!-- este es para enlazar con la libreria de iconos -->
-    <script src="https://cdn.lordicon.com/lordicon.js"></script>
-
-    <!-- este es para enlazar con lla libreria de estilos con tailwindcs-->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-
-</head>
+<head th:replace="~{layout/layout :: head}"></head>
 <body class=" font-[Poppins,sans-serif] bg-[#62C4C4]  h-[200px]">
 <div class="flex flex-row items-center justify-start m-5">
     <img th:src="@{images/logoSinFondo.png}"  alt="logo" class=" w-[600px] ml-10 mt-10">
@@ -44,6 +24,8 @@
                     class="bg-[#F0F650] text-[#232B59] px-6 py-4  w-[400px] transition">
                Iniciar sesion
             </button>
+
+            <p class="text-center text-white">¿No tines cuenta? <a th:href="@{/pruebaRegistrer}" class="text-[#F0F650] font-bold">registrate</a></p>
 
         </form>
 

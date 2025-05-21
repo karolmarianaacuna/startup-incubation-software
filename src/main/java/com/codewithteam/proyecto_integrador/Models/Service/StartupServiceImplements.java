@@ -48,10 +48,10 @@ public class StartupServiceImplements implements StartupService {
         return startupDao.buscarPorSector(categoria);
     }
 
-    @Override
-    public List<StartupEntity> findByNombre(String nombreStartup) {
-        return findByNombre(nombreStartup);
-    }
+//    @Override
+//    public List<StartupEntity> findByNombre(String nombreStartup) {
+//        return findByNombre(nombreStartup);
+//    }
 
 
     @Override

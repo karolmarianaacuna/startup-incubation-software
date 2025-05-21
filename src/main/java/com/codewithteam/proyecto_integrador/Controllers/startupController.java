@@ -2,6 +2,8 @@ package com.codewithteam.proyecto_integrador.Controllers;
 
 
 import com.codewithteam.proyecto_integrador.Entities.StartupEntity;
+import com.codewithteam.proyecto_integrador.Entities.UsuarioEntity;
+import com.codewithteam.proyecto_integrador.Models.Service.MonitoriaService;
 import com.codewithteam.proyecto_integrador.Models.Service.StartupService;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,13 +34,21 @@ public class startupController {
 
     @Autowired
     private StartupService startupService;
+    @Autowired
+    private MonitoriaService monitoriaService;
 
     @GetMapping("/startups/{id}")
     public String verStartup(@PathVariable Long id, Model model) {
+
         StartupEntity startup = startupService.viewDetail(id);
+        List<UsuarioEntity> usuariosRelacionados = monitoriaService.encontrarUsuariosPorStartup(id);
+
+
+        model.addAttribute("usuarioRelacionado", usuariosRelacionados);
         model.addAttribute("startup", startup);
         return "/detalles/detallesStartup";
     }
+
 
 
     @GetMapping("/pruebaStartups")

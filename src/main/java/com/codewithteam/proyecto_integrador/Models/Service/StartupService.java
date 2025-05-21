@@ -28,7 +28,9 @@ public interface StartupService {
 // Devuelve una lista de startups que pertenezcan a una categoría específica.
 
 
-    public List<StartupEntity> findByNombre(String nombreStartup);
+
+
+
 
 
 

@@ -4,6 +4,7 @@ import com.codewithteam.proyecto_integrador.Entities.NoticiaEntity;
 
 import java.util.List;
 
+
 public interface NoticiaService {
     // Devuelve una lista con todas las noticias registradas en la base de datos.
     public List<NoticiaEntity> findAll();
