@@ -38,6 +38,7 @@ public class UsuarioEntity  implements Serializable {
     @Column(name="Cargo_usuario")
     private String Cargo;
 
+
     @NotNull
     @Size(min = 1, max=50)
     @Column(name = "correo_usuario", nullable = false)
@@ -57,6 +58,11 @@ public class UsuarioEntity  implements Serializable {
     @Size(min = 1, max=10)
     @Column(name ="identificacion_usuario", unique = true)
     private String identificacionUsuario;
+
+
+    @Size(min = 1, max=10)
+    @Column(name ="img_usuario")
+    private String imagenUsuario;
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-mm-dd")

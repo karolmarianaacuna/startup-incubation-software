@@ -2,11 +2,13 @@ package com.codewithteam.proyecto_integrador.Entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 @Data
 @Entity
@@ -72,6 +74,12 @@ public class StartupEntity implements Serializable {
     @Size(max = 200)
     @Column(name = "enlace_video")
     private String video;
+
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @Temporal(TemporalType.DATE)
+    @Column(name="fecha_creacion")
+    private Date fechaCreacion;
 
     //relacion de startup con convocatoria(muchos a uno)
     @ManyToOne()

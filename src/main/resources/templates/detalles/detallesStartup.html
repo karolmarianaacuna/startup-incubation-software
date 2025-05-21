@@ -12,51 +12,67 @@
                 allowfullscreen>
         </iframe>
     </div>
+    <div th:each="startup : ${startup}" class="flex flex-row mx-40 ">
+        <div class="w-[20%]">
 
-    <div th:each="startup : ${startup}"  class="grid grid-cols-8 grid-rows-7 gap-4">
-        <div class="col-span-2 row-span-5 col-start-2 bg-[#05A6A6] items-center p-5 grid place-items-center">
-            <img th:src="${startup.logo}" class="w-[250px] h-[250px] object-contain object-center bg-white mb-10 mt-5" >
-            <div class="grid place-items-start">
-                <p class="text-xl text-white font-bold ml-5">Redes sociales</p>
-                <div th:each="usuarioRelacionado : ${usuarioRelacionado} " class="m-5 text-white">
-                    <p class="font-base" th:text="${usuarioRelacionado.nombreUsuario}"></p>
-                    <p class="font-base" th:text="${usuarioRelacionado.correoUsuario}"></p>
-                    <p class="font-base" th:text="${usuarioRelacionado.profesionUsuario}"></p>
-                    <p class="font-base" th:text="${usuarioRelacionado.Cargo}"></p>
+            <div class="bg-[#05A6A6] flex flex-col items-center h-[450px]">
+                <img th:src="${startup.logo}" class="w-[150px] h-[150px] object-contain object-center bg-white mb-5 mt-5 " >
+                <div class="grid place-items-start">
+                    <p class="text-xl text-white font-bold ml-5">Redes sociales</p>
 
                 </div>
             </div>
 
+        </div>
+        <div class="w-[80%]">
+
+          <div class="p-10 pr-40 flex flex-col gap-10  text-justify">
+              <div>
+                  <!--nombre y descripcion de la startup-->
+                  <p class="text-3xl font-bold" th:text="${startup.nombreStartup}"></p>
+                  <p th:text="${startup.descripcionStartup}"></p>
+              </div>
+
+              <div>
+                  <!--propiesta de valor  de la startup-->
+                  <p class="font-bold">Propuesta de Valor:</p>
+                  <p th:text="${startup.propuestaValor}"></p>
+
+              </div>
+              <div>
+                  <!--problema que resuleve  de la startup-->
+                  <p class="font-bold">Problema que resuelve:</p>
+                  <p th:text="${startup.problematica}"></p>
+
+              </div>
+
+              <div class="w-full text-left mb-6">
+                  <p class="text-2xl font-bold text-gray-800">Fundadores</p>
+                  <span class="block w-24 h-1 bg-[#EAF205] mt-2 rounded-full"></span>
+              </div>
+
+              <div class="flex flex-row flex-wrap gap-4">
+                  <!--usuarios relacionados a la startup-->
+                  <div th:each="usuarioRelacionado : ${usuarioRelacionado} "
+                       class="bg-[#F1F1F1] rounded-xl shadow-md flex flex-col items-center justify-center w-[250px] h-[300px] p-4 hover:scale-105 transition-transform duration-300">
+
+                      <img th:src="${usuarioRelacionado.imagenUsuario}"
+                           class="w-[150px] h-[150px] rounded-full object-cover mb-4"
+                           alt="Foto del usuario" />
+
+                      <p class="font-base text-black text-center" th:text="${usuarioRelacionado.nombreUsuario}"></p>
+                      <p class="font-base text-black text-center break-words" th:text="${usuarioRelacionado.correoUsuario}"></p>
+                      <p class="font-base text-black text-center" th:text="${usuarioRelacionado.profesionUsuario}"></p>
+                      <p class="font-base text-black text-center" th:text="${usuarioRelacionado.cargo}"></p>
+                  </div>
+
+              </div>
+          </div>
 
 
 
         </div>
-        <div class="col-span-4 row-span-2 col-start-4 pl-10  p-10">
-            <p class="text-3xl font-bold" th:text="${startup.nombreStartup}"></p>
-            <p th:text="${startup.descripcionStartup}"></p>
-        </div>
-        <div class="col-span-4 col-start-4 row-start-3 pl-10">
-            <p class="font-bold">Propuesta de Valor:</p>
-            <p th:text="${startup.propuestaValor}"></p>
 
-        </div>
-        <div class="col-span-4 col-start-4 row-start-4 pl-10">
-            <p class="font-bold">Problema que resuelve:</p>
-            <p th:text="${startup.problematica}"></p>
-
-        </div>
-        <div class="col-span-2 row-span-2 col-start-4 row-start-5 pl-10">
-            <div th:each="startup : ${startup}" >
-                <img th:src="${startup.logo}" class="w-[100px] object-cover" >
-
-            </div>
-        </div>
-        <div class="col-span-2 row-span-2 col-start-6 row-start-5">
-            <div th:each="startup : ${startup}" >
-                <img th:src="${startup.logo}" class="w-[100px] object-cover" >
-
-            </div>
-        </div>
     </div>
 
 
@@ -64,11 +80,15 @@
 
 
 
-<!--    <h1 th:text="${startup.nombreStartup}">Nombre</h1>-->
-<!--    <p><strong>Categoría:</strong> <span th:text="${startup.sectorStartup}"></span></p>-->
-<!--    <p><strong>Descripción:</strong> <span th:text="${startup.descripcionStartup}"></span></p>-->
-<!--    <p><strong>Emprendedor:</strong> <span th:text="${startup.propuestaValor}"></span></p>-->
-<!--    <p><strong>Estado:</strong> <span th:text="${startup.problematica}"></span></p>-->
+
+
+
+
+
+
+
+
+
 
     <footer th:replace="~{layout/layout :: footer}"></footer>
     </body>
