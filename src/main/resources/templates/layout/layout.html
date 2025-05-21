@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name='viewport' content="width=device-with, initial-scale=1.0">
+    <title>[[${title}]]</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- este es para la animacion de la pagina a esta va anidada un script que esta en el body -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- este es para enlazar con la libreria de iconos -->
+        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+    <!-- este es para enlazar con lla libreria de estilos con tailwindcs-->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -15,11 +31,9 @@
             <ul class="flex flex-row  gap-4 p-10 justify-end">
                 <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/}">Inicio</a></li>
                 <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/pruebaStartups}">Startups</a></li>
-                <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/pruebaFundadores}">fundadores </a></li>
-                <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/}">Inversionistas </a></li>
-                <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/}">Convocatorias </a></li>
+                <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/Convocatorias}">Convocatorias </a></li>
                 <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/blogNoticias}">Blog y Noticias</a></li>
-                <li><a class="font-thin text-white bg-[#05A6A6] p-3 rounded-xl mt-10 " th:href="@{/pruebaRegistrer}">Unete a nosotros</a></li>
+                <li><a class="font-thin text-white bg-[#05A6A6] p-3 rounded-xl mt-10 " th:href="@{/pruebaLogin}">Unete a nosotros</a></li>
             </ul>
 
         </nav>
@@ -29,9 +43,56 @@
 
 
 </div>
-<footer th:fragment="footer">
-    <div class="text-center text-white bg-[#232B59] h-[200px]">
-       soy el footer
+<footer th:fragment="footer" class="bg-[#232B59]">
+    <div class="grid grid-cols-3 gap-5 pt-10 pl-10 pr-10">
+
+
+        <div>
+            <h2 class="text-xl font-bold mb-2 text-white">EmprendeUSTA</h2>
+            <p class="text-sm text-white">Acompañamos a emprendedores universitarios con mentoría, incubación y una comunidad activa para convertir ideas en soluciones reales con impacto..</p>
+        </div>
+
+
+        <div>
+            <h3 class="text-lg font-semibold mb-3 text-white">Secciones</h3>
+            <ul class="flex flex-col ">
+                <li><a class="font-thin text-white hover:text-white border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/}">Inicio</a></li>
+                <li><a class="font-thin text-white hover:text-white border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/pruebaStartups}">Startups</a></li>
+                <li><a class="font-thin text-white hover:text-white border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/}">Convocatorias </a></li>
+                <li><a class="font-thin text-white hover:text-white  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/blogNoticias}">Blog y Noticias</a></li>
+
+            </ul>
+        </div>
+
+
+        <div>
+
+            <div class="mb-5">
+                <h3 class="text-lg font-semibold mb-3 text-white">Síguenos</h3>
+                <div class="flex space-x-4 text-2xl">
+                    <a href="#" class="text-white hover:text-[#F2F767]"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-[#F2F767]"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-white hover:text-[#F2F767]"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white hover:text-[#F2F767]"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <h3 class="text-lg font-semibold mb-3 text-white">Contáctanos</h3>
+
+            <ul class="text-sm space-y-2 text-white mb-5">
+                <li>📧 contacto@emprendeusta.edu.co</li>
+                <li>📍 Tunja, Colombia</li>
+            </ul>
+        </div>
+
+
+
+
+    </div>
+
+
+    <div class="mt-2 border-t border-[#F2F767] pt-4 text-center text-sm text-gray-400">
+        <p>© 2025 EmprendeUSTA. Todos los derechos reservados.</p>
+        <p>Desarrollado por Mariana, Kevin, Cristian y Cesar 💻</p>
     </div>
 </footer>
 

@@ -54,10 +54,7 @@ public class UsuarioEntity  implements Serializable {
     @Column(name="fecha_creacion")
     private Date fechaCreacion;
 
-    @NotNull
-    @Size(min=1, max=200)
-    @Column(name = "foto_usuario", length = 200)
-    private String fotoUsuario;
+
 
 
     //relacion de usuarios con rol de (muchos a uno)

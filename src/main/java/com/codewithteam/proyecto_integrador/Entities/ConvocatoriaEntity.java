@@ -60,6 +60,14 @@ public class ConvocatoriaEntity implements Serializable {
     @Column(name="fecha_creacion")
     private Date fechaCreacion;
 
+    @Size(max = 200)
+    @Column(name = "foto_convocatoria")
+    private String fotoConvocatoria;
+
+
+
+
+
     //relacion de convocatoria con startup (uno a mucho)
     @OneToMany( mappedBy = "convocatoria")
     private Collection<StartupEntity>startups;

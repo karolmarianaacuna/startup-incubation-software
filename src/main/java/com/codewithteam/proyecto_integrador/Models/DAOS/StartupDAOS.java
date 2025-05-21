@@ -24,7 +24,7 @@ public interface StartupDAOS extends CrudRepository<StartupEntity, Long> {
 
     // Buscar por sector (exacto)
     @Transactional
-    @Query("SELECT s FROM StartupEntity s WHERE s.sectorStartup = ?")
+    @Query("SELECT s FROM StartupEntity s WHERE s.sectorStartup = ?1")
     List<StartupEntity> buscarPorSector(String sectorStartup);
 
 

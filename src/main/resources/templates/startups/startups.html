@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title><!-- este es para enlazar con fuentes externas -->
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- este es para la animacion de la pagina a esta va anidada un script que esta en el body -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <!-- este es para enlazar con la libreria de iconos -->
-    <script src="https://cdn.lordicon.com/lordicon.js"></script>
-
-    <!-- este es para enlazar con lla libreria de estilos con tailwindcs-->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+<head th:replace="~{layout/layout :: head}"></head>
 <body class="font-[Poppins,sans-serif] ">
 <header th:replace="~{layout/layout :: navegacion}"></header>
 <div class="flex flex-row m-20 h-[400px] ">
@@ -122,9 +106,10 @@
 
             </div>
             <div class="flex flex-row justify-center items-center">
-                <a class="bg-[#05A6A6] text-white font-bold px-6 py-2 rounded inline-block mt-6 transition-transform transform hover:scale-105 hover:bg-[#d68704]" th:href="@{/blogNoticias}">
-                    ver Startups
+                <a class="bg-[#05A6A6] text-white font-bold px-6 py-2 rounded inline-block mt-6 transition-transform transform hover:scale-105 hover:bg-[#d68704]" th:href="@{'/startups/' + ${startup.idStartup}}">
+                    ver mas info
                 </a>
+
             </div>
 
 

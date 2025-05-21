@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{layout/layout :: head}"></head>
+<body class="font-[Poppins,sans-serif] ">
+<header th:replace="~{layout/layout :: navegacion}"></header>
+
+<section class="w-full h-[600px] relative mb-12 ">
+
+
+    <img src="/images/personasSeccion3.jpg" alt="Bienvenida a noticias" class="absolute top-0 right-0 w-[75%] h-full object-cover z-0 "/>
+
+
+    <div class="absolute top-1/4 left-20 bg-teal-500 text-white p-8 w-[500px] h-[180px] rounded shadow-lg
+        z-10 flex items-center justify-center transition-transform duration-700 hover:scale-105">
+        <p class="text-2xl font-semibold text-center">Es tu momento de brillar. ¡Postúlate y transforma tus ideas en realidad!</p>
+    </div>
+
+
+</section>
+<section>
+    <p class="text-3xl font-semibold ml-20">lista de convocatorias</p>
+
+    <div class="grid grid-cols-2 gap-10 m-20">
+        <div th:each="convocatoria : ${convocatorias}" class="text-black shadow-md overflow-hidden p-10 bg-[#]">
+            <img th:src="${convocatoria.fotoConvocatoria}"
+                    alt="Imagen de la convocatoria"
+                    class="w-full h-[250px] object-cover object-center rounded-lg"
+            />
+            <p th:text="${convocatoria.titulo}"></p>
+            <p class="font-semibold" th:text="${convocatoria.estadoConvocatoria}"></p>
+            <p th:text="${convocatoria.descripcion}"></p>
+            <button type="submit" class=" my-10 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">
+               Unirse a convocatoria
+            </button>
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+</body>
+</html>

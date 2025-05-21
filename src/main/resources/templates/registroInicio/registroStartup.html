@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+<body class="font-[Poppins,sans-serif] ">
+<div class="flex flex-row items-center justify-between   m-5">
+    <a th:href="@{/}"><img th:src="@{images/logoSinFondo.png}"  alt="logo" class=" w-[600px] ml-5 mt-10"></a>
+    <a class="font-thin text-white bg-[#05A6A6]  rounded-xl mt-10 mr-10 text-white  px-10 py-2 rounded  transition-transform transform hover:scale-105 hover:bg-[#d68704] " th:href="@{/}">salir</a>
+</div>
+<section>
+    <div class="ml-20">
+        <p class="text-4xl text-[#232B59] font-semibold mt-8">Bienvenido, </p>
+        <p>Inicia el proceso de aplicación para que evaluemos tu empresa como potencial</p>
+    </div>
+
+    <div class="mx-20 my-10 ">
+        <form th:action="@{/}" method="post" enctype="multipart/form-data" th:object="${startupEntity}" class="bg-[#F2F767] p-10 rounded-lg shadow-md">
+
+            <div class="grid grid-cols-2 gap-8">
+
+                <div class="flex flex-col space-y-5">
+                    <input id="nombreStartup" type="text" th:field="*{nombreStartup}" required
+                           class="p-2 rounded-md border border-gray-300"
+                           placeholder="Nombre de la Startup" />
+
+                    <input id="correoStartup" type="email" th:field="*{correoStartup}"
+                           class="p-2 rounded-md border border-gray-300"
+                           placeholder="Correo de contacto" />
+
+                    <textarea id="descripcionStartup" th:field="*{descripcionStartup}" rows="4"
+                              placeholder="Descripción de la Startup"
+                              class="p-2 rounded-md border border-gray-300"></textarea>
+
+                    <div>
+                        <label class="text-stone-900 font-bold block mb-1">Logo de la Startup:</label>
+                        <input type="file" id="foto" name="foto" th:field="*{logo}" accept="image/*"
+                               class="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4
+                           file:rounded-full file:border-0 file:text-sm file:font-semibold
+                           file:bg-yellow-500 file:text-white hover:file:bg-yellow-600" />
+                    </div>
+
+                    <div>
+                        <label class="text-stone-900 font-bold block mb-1">Video de YouTube:</label>
+                        <input type="text" th:field="*{video}"
+                               placeholder="https://www.youtube.com/watch?v=xxxxx"
+                               class="p-2 rounded-md border border-gray-300 w-full" />
+                    </div>
+                </div>
+
+                <!-- Columna derecha -->
+                <div class="flex flex-col space-y-5">
+                    <div>
+                        <label for="sectorStartup" class="block font-bold text-stone-900 mb-1">Categoría:</label>
+                        <select id="sectorStartup" name="sectorStartup" th:field="*{sectorStartup}" required
+                                class="p-2 rounded-md border border-gray-300 w-full">
+                            <option value="">Selecciona una categoría</option>
+                            <option value="agricola">Agrícola</option>
+                            <option value="IA">Inteligencia Artificial y Aprendizaje Automático</option>
+                            <option value="Construcción">Construcción y Arquitectura</option>
+                            <option value="EdTech">Tecnología Educativa</option>
+                            <option value="FinTech">Tecnología Financiera</option>
+                            <option value="Salud">Tecnología Médica / Salud</option>
+                            <option value="Turismo">Viajes y Hospitalidad</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="propuestaValor" class="text-stone-900 font-bold block mb-1">Propuesta de Valor:</label>
+                        <textarea id="propuestaValor" th:field="*{propuestaValor}" rows="4"
+                                  class="p-2 rounded-md border border-gray-300 w-full"></textarea>
+                    </div>
+
+                    <div>
+                        <label for="problematica" class="text-stone-900 font-bold block mb-1">Problemática que resuelve:</label>
+                        <textarea id="problematica" th:field="*{problematica}" rows="4"
+                                  class="p-2 rounded-md border border-gray-300 w-full"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center">
+                <button class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-md transition">
+                    Guardar Startup
+                </button>
+            </div>
+        </form>
+    </div>
+
+</section>
+
+</body>
+</html>
