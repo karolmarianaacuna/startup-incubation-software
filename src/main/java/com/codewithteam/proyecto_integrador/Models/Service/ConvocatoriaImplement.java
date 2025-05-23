@@ -56,6 +56,11 @@ public class ConvocatoriaImplement implements ConvocatoriaService{
     public List<ConvocatoriaEntity> filtrarPorEstado(String estado) {
         return convocatoriaDAO.categoriaActiva(estado);
     }
+
+    @Override
+    public long contarStartups() {
+        return convocatoriaDAO.contarConvocatoriasActivas();
+    }
 }
 
 

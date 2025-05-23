@@ -27,7 +27,10 @@ public interface StartupDAOS extends CrudRepository<StartupEntity, Long> {
     @Query("SELECT s FROM StartupEntity s WHERE s.sectorStartup = ?1")
     List<StartupEntity> buscarPorSector(String sectorStartup);
 
-    //Traer los usuarios relacionados al startup
+    //contra la cantidad de startups
+    @Query("SELECT COUNT(s) FROM StartupEntity s")
+    long contarStartups();
+
 
 
 //    // Buscar por sector (exacto)

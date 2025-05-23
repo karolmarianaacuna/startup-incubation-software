@@ -32,7 +32,7 @@ public class StartupEntity implements Serializable {
     private String correoStartup;
 
     @NotNull
-    @Size(min = 1, max = 500)
+    @Size(min = 1, max = 1000)
     @Column(name = "descripcion_startup")
     private String descripcionStartup;
 
@@ -48,7 +48,7 @@ public class StartupEntity implements Serializable {
 
 
     @Size(min = 1, max = 500)
-    @Column(name = "url_paginaWeb")
+    @Column(name = "url_pagina_web")
     private String urlPaginaWeb;
 
 

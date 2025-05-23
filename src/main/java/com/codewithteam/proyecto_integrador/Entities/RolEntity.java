@@ -19,7 +19,7 @@ public class RolEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rol")
-    private int idRol;
+    private Integer idRol;
 
     @NotNull
     @Size(min =1, max = 40)

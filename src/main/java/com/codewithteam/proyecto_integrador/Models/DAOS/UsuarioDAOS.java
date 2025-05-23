@@ -34,7 +34,8 @@ public interface UsuarioDAOS extends CrudRepository<UsuarioEntity, Long> {
     @Query("SELECT u FROM UsuarioEntity u WHERE SIZE(u.monitoriasUsuario) = 0")
     public List<UsuarioEntity> findUsuariosSinMonitorias();
 
-
+    boolean existsByCorreoUsuario(String correoUsuario);
+    boolean existsByIdentificacionUsuario(String identificacionUsuario);
 
 }
 

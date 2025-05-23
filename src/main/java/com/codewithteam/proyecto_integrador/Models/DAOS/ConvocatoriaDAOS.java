@@ -21,5 +21,8 @@ public interface ConvocatoriaDAOS extends CrudRepository<ConvocatoriaEntity,Long
     @Query("SELECT c FROM ConvocatoriaEntity c WHERE c.estadoConvocatoria = :estado")
     List<ConvocatoriaEntity> categoriaActiva(@Param("estado") String estado);
 
+    @Query("SELECT COUNT(c) FROM ConvocatoriaEntity c WHERE c.estadoConvocatoria = 'activa'")
+    long contarConvocatoriasActivas();
+
 
 }

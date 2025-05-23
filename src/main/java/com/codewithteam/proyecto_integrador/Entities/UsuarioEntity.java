@@ -23,6 +23,7 @@ public class UsuarioEntity  implements Serializable {
     @Column(name = "id_usuario")
     private long idUsuario;
 
+
     @NotNull
     @Size(min = 1, max=20)
     @Column(name="nombre_usuario")

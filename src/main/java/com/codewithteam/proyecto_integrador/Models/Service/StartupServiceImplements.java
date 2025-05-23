@@ -14,16 +14,21 @@ public class StartupServiceImplements implements StartupService {
 
     @Override
     public List<StartupEntity> findAll() {
+
         return (List<StartupEntity>) startupDao.findAll();
     }
 
+
     @Override
     public void save(StartupEntity startup) {
+
         startupDao.save(startup);
     }
 
+
     @Override
     public StartupEntity findById(Long id) {
+
         return startupDao.findById(id).orElse(null);
     }
 
@@ -33,8 +38,8 @@ public class StartupServiceImplements implements StartupService {
     }
 
     @Override
-    public StartupEntity actualizarStartup(StartupEntity startup) {
-        return startupDao.save(startup);
+    public void actualizaStartup(StartupEntity startup) {
+        startupDao.save(startup);
     }
 
 
@@ -48,14 +53,20 @@ public class StartupServiceImplements implements StartupService {
         return startupDao.buscarPorSector(categoria);
     }
 
+    @Override
+    public long contarStartups() {
+        return startupDao.contarStartups();
+    }
+
+
 //    @Override
 //    public List<StartupEntity> findByNombre(String nombreStartup) {
 //        return findByNombre(nombreStartup);
 //    }
 
-
-    @Override
-    public List<Object[]> countStartupsBySector() {
-        return List.of();
-    }
+//
+//    @Override
+//    public List<Object[]> countStartupsBySector() {
+//        return List.of();
+//    }
 }

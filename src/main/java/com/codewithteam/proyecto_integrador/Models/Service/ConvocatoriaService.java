@@ -1,7 +1,6 @@
 package com.codewithteam.proyecto_integrador.Models.Service;
 
 import com.codewithteam.proyecto_integrador.Entities.ConvocatoriaEntity;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +18,7 @@ public interface ConvocatoriaService {
     public void changeState(Long id);
     public ConvocatoriaEntity viewDetails(Long id);
     public  List<ConvocatoriaEntity> filtrarPorEstado(String estado);
+    public long contarStartups();
 }
 
 
