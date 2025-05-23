@@ -53,24 +53,21 @@
             </svg>
         </div>
 
-        <form  th:action="@{/pruebaStartups}" method="get">
-            <select name="categoriaSeleccionada" class="border p-2 rounded">
-                <option value="" th:selected="${categoriaSeleccionada == null}">Todas las categorías</option>
-                <option value="agricola" th:selected="${categoriaSeleccionada == 'agricola'}">Agrícola</option>
+        <!-- es aca lo de filtar por categoarias -->
 
-                <option value="IA" th:selected="${categoriaSeleccionada == 'IA'}">Inteligencia Artificial y Aprendizaje Automático</option>
-                <option value="Construcción" th:selected="${categoriaSeleccionada == 'Construcción'}">Construcción y Arquitectura</option>
-                <option value="EdTech" th:selected="${categoriaSeleccionada == 'EdTech'}">Tecnología Educativa</option>
-                <option value="FinTech" th:selected="${categoriaSeleccionada == 'FinTech'}">Tecnología Financiera</option>
-                <option value="Salud" th:selected="${categoriaSeleccionada == 'Salud'}">Tecnología Médica / Salud</option>
-                <option value="Turismo" th:selected="${categoriaSeleccionada == 'Turismo'}">Viajes y Hospitalidad</option>
+        <form method="get" th:action="@{/panelStartups}">
+            <select id="categoriaSelect" name="categoria" class="border p-2 rounded" onchange="this.form.submit()">
+                <option value="" th:selected="${categoriaSeleccionada == ''}">Todas las categorías</option>
+                <option value="agricola" th:selected="${categoriaSeleccionada == 'agricola'}">Agrícola</option>
+                <option value="IA" th:selected="${categoriaSeleccionada == 'IA'}">IA</option>
+                <option value="Construcción" th:selected="${categoriaSeleccionada == 'Construcción'}">Construcción</option>
+                <option value="EdTech" th:selected="${categoriaSeleccionada == 'EdTech'}">EdTech</option>
+                <option value="FinTech" th:selected="${categoriaSeleccionada == 'FinTech'}">FinTech</option>
+                <option value="Salud" th:selected="${categoriaSeleccionada == 'Salud'}">Salud</option>
+                <option value="Turismo" th:selected="${categoriaSeleccionada == 'Turismo'}">Turismo</option>
                 <option value="Otro" th:selected="${categoriaSeleccionada == 'Otro'}">Otro</option>
             </select>
-            <button type="submit" class="ml-2 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">
-                Filtrar
-            </button>
         </form>
-
 
 
 
@@ -84,7 +81,7 @@
 
 </section>
 <section class="bg-[#F1F1F1]">
-    <div class="grid md:grid-cols-3 gap-6 px-40 py-20">
+    <div class="grid md:grid-cols-3 gap-6 px-40 py-20 "  id="contenedorStartups">
 
         <div class="text-black overflow-hidden "
              th:each="startup : ${startups}">
@@ -130,6 +127,7 @@
 <script>
     AOS.init();
 </script>
+
 
 
 </body>

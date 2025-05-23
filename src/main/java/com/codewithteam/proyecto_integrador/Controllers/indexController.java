@@ -50,11 +50,7 @@ public class indexController {
         return "/dashboard/dashboardEmprendedor";
     }
 
-    @GetMapping("/pruebaFundadores")
-    public String Fundador() {
-        // Este es el nombre del html
-        return "/fundadores/fundadores";
-    }
+
 
 }
 

@@ -37,6 +37,29 @@ public class startupController {
     @Autowired
     private MonitoriaService monitoriaService;
 
+    // Ruta que devuelve la vista de startups con la lista cargada
+    @GetMapping("/panelStartups")
+    public String inicioStartup(@RequestParam(required = false) String categoria,Model model) {
+
+        List<StartupEntity> startups = startupService.findAll();
+
+
+        //vamos a filtar por categorias depende del combo box  en la misma vista
+        if (categoria != null && !categoria.isEmpty()) {
+            startups = startupService.findByCategoria(categoria);
+        } else {
+            startups = startupService.findAll();
+        }
+
+        model.addAttribute("startups", startups);
+        model.addAttribute("categoria", categoria);
+
+
+        return "/startups/startups";
+    }
+
+
+    //trae a cada startup con su usuario o los usuarios relacionados
     @GetMapping("/startups/{id}")
     public String verStartup(@PathVariable Long id, Model model) {
 
@@ -51,27 +74,7 @@ public class startupController {
 
 
 
-    @GetMapping("/pruebaStartups")
-    public String Startups(@RequestParam(required = false) String categoria, Model model) {
 
-
-        List<StartupEntity> startups;
-
-
-        if (categoria != null && !categoria.isEmpty()) {
-            startups = startupService.findByCategoria(categoria);
-
-            model.addAttribute("categoriaSeleccionada", categoria);
-        } else {
-            startups = startupService.findAll();
-        }
-
-        model.addAttribute("startups", startups);
-
-        System.out.println("Categoría seleccionada: " + categoria);
-
-        return "/startups/startups";
-    }
 
     @GetMapping("/crearStartup")
     public String crearSartup(Model model){
