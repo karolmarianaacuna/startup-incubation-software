@@ -61,6 +61,12 @@ public class ConvocatoriaImplement implements ConvocatoriaService{
     public long contarStartups() {
         return convocatoriaDAO.contarConvocatoriasActivas();
     }
+
+    @Override
+    public List<ConvocatoriaEntity> findByEstadoConvocatoriaIgnoreCase(String estadoConvocatoria) {
+        return convocatoriaDAO.findByEstadoIgnoreCaseOrderByFechaDesc(estadoConvocatoria);
+    }
+
 }
 
 

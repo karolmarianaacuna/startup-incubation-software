@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/layout :: head}"></head>
-<body class="font-[Poppins,sans-serif]">
+<body class="font-[Poppins,sans-serif]  ">
 <header th:replace="~{layout/layout :: navegacion}"></header>
 
 <!-- Sección de últimas noticias -->
-<section class="ml-20 mr-20 mt-10 px-6">
-    <div class="grid grid-cols-4 grid-rows-2 gap-6 h-[600px]">
+<section class="  px-10  my-10 rounded-xl">
 
-        <!-- Tarjeta 1: Grande (2x2) -->
+<!--    <div class="absolute -top-24 left-6 z-20">-->
+<!--        <img class="w-[500px] drop-shadow-lg animate-bounce" th:src="@{images/amor.png}" alt="Cohete decorativo" />-->
+<!--    </div>-->
+
+    <div class="absolute w-12 h-12 bg-white/20 rounded-full animate-bounce blur-sm left-[20%] top-[50%]"></div>
+
+
+
+
+    <div class="grid grid-cols-4 grid-rows-2 gap-6 h-[480px]  ml-20 mr-20 mt-10 px-6 relative z-10">
+
+
         <div class="relative col-span-2 row-span-2 group rounded-xl overflow-hidden">
-            <img th:src="${noticias[0]?.fotoNoticia}" class="w-full h-full object-cover" />
+            <video autoplay muted loop class="w-full h-full object-cover rounded-lg shadow-md">
+                <source th:src="@{/videos/video1.mp4}" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
             <div class="absolute inset-0 bg-gradient-to-t from-purple-700/60 via-transparent to-transparent transition-all duration-300 group-hover:bg-purple-800/60 p-6 flex flex-col justify-end text-white">
                 <h3 class="text-2xl font-bold mb-2" th:text="${noticias[0]?.nombreNoticia}"></h3>
-                <p class="text-sm mb-2" th:text="${noticias[0]?.descripcionNoticia}"></p>
-                <span class="text-xs italic" th:text="${#dates.format(noticias[0]?.fechaCreacion, 'dd MMMM yyyy')}"></span>
             </div>
+
         </div>
 
         <!-- Tarjeta 2: Derecha superior -->
@@ -35,7 +47,7 @@
     </div>
 </section>
 <!-- Sección de iniciativas -->
-<section class="py-10 px-20 mt-10">
+<section class="py-10 px-20  bg-[#F2F767]">
     <h2 class="text-xl font-bold text-black mb-4">INICIATIVAS</h2>
     <hr class="border-t border-purple-300 mb-6" />
 
@@ -86,7 +98,7 @@
 
 
 <!-- Sección de listar las noticias -->
-<section class="py-10 px-20 mt-10">
+<section class="mx-40">
     <h2 class="text-xl font-bold text-black mb-2">NOTICIAS</h2>
     <hr class="border-t border-purple-300 mb-6" />
 
@@ -111,13 +123,13 @@
             </div>
         </div>
     </div>
-</section>
+</section
+>
 
 
 
+<footer  th:replace="~{layout/layout :: footer}" ></footer>
 
-
-<hr class="my-12 border-t-4 border-yellow-400 w-2/5 mx-auto"> <!-- Aumenté my-6 a my-12 -->
 
 
 

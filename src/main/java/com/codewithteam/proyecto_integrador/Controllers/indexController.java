@@ -14,18 +14,6 @@ import java.util.List;
 
 @Controller
 public class indexController {
-    @Autowired
-    private NoticiaService noticiasService;
-    @Autowired
-    private StartupService startupService;
-
-    @GetMapping("/blogNoticias")
-    public String blogNoticias(Model model) {
-        List<NoticiaEntity> lista = noticiasService.findAll();
-        model.addAttribute("noticias", lista);
-        //este es el nombre del html
-        return "/noticias/blogNoticias";
-    }
 
 
     @GetMapping("/pruebaRegistrer")
@@ -43,12 +31,10 @@ public class indexController {
         return "/registroInicio/login";
     }
 
-    @GetMapping("/pruebadashboardEmeprendedor")
-    public String Emprendedor() {
-        // Este es el nombre del html
 
-        return "/dashboard/dashboardEmprendedor";
-    }
+
+
+
 
 
 
