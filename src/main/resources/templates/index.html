@@ -8,10 +8,10 @@
 
 
 <div class="flex flex-row h-[900px] pl-20 pr-20 ">
-    <div class="basis-1/2 flex flex-col justify-center items-center leading-6 ">
+    <div class="basis-1/2 flex flex-col justify-center items-center  ">
 
         <div class="flex flex-col justify-center  ">
-            <div data-aos="fade-right" data-aos-duration="3000">
+            <div data-aos="flip-up" data-aos-duration="3000">
                 <p  class="text-4xl font-bold" >Donde las ideas toman forma y el <br> futuro empieza a construirse.</p>
                 <p class="text-4xl text-[#05A6A6] font-bold">Tu idea es el próximo <br>
                     gran cambio. Empieza hoy.</p>
@@ -21,18 +21,36 @@
             <br>
 
 
-            <div class="flex flex-row justify-center gap-5 mt-8 items-center pr-20" data-aos="flip-up" data-aos-duration="3000">
+            <div class="flex flex-row justify-center gap-5 mt-8 items-center pr-20" >
                 <div class="text-center m-2">
 
-                    <p th:text="${totalStartups}" class="text-4xl font-semibold text-[#F29F05]">0</p>
-                    <p class="font-thin leading-none ">Startups registradas</p>
+                    <p class="text-5xl font-extrabold text-[#F29F05]">+
+                        <span class="purecounter count-number "
+                              data-purecounter-start="0"
+                              data-purecounter-end="50"
+                              data-purecounter-duration="2">
+                        </span>
+                    </p>
+                    <p class="font-thin leading-none">Startups registradas</p>
                 </div>
                 <div class="text-center border-x border-x-[#000000] m-2">
-                    <p class="text-4xl font-semibold text-[#F29F05]">85%</p>
+                    <p class="text-5xl font-extrabold text-[#F29F05]">
+                        <span class="purecounter count-number "
+                              data-purecounter-start="0"
+                              data-purecounter-end="85"
+                              data-purecounter-duration="2">
+                        </span>%
+                    </p>
                     <p class="font-thin leading-none">Convocatorias Activas</p>
                 </div>
                 <div class="text-center m-2">
-                    <p class="text-4xl font-semibold text-[#F29F05]">40%</p>
+                    <p class="text-5xl font-extrabold text-[#F29F05]">
+                        <span class="purecounter count-number "
+                              data-purecounter-start="0"
+                              data-purecounter-end="45"
+                              data-purecounter-duration="2">
+                        </span>%
+                    </p>
                     <p class="font-thin leading-none">Proyectos liderados por mujeres</p>
                 </div>
             </div>
@@ -48,7 +66,7 @@
 
     <div class="basis-1/2">
 
-        <div class="grid grid-cols-3 gap-4 m-10 " >
+        <div class="grid grid-cols-3 gap-4 m-10 px-5" >
             <div class="flex flex-col " >
 
                 <img class=" object-cover  rounded-full overflow-hidden w-[180px] h-[350px] hover:scale-105 transition-transform duration-300" th:src="@{images/mujer1.jpg}" data-aos="flip-left"
@@ -58,7 +76,7 @@
                 <img class=" object-cover  rounded-full overflow-hidden w-[180px] h-[350px]  hover:scale-105 transition-transform duration-300" th:src="@{images/homnre.jpg}" data-aos="flip-left"
                      data-aos-easing="ease-out-cubic"
                      data-aos-duration="2000">
-                <img class="w-[57px] h-[57] mt-5 ml-[150px]" th:src="@{images/EllipseA.png}">
+                <img class="w-[57px] h-[57] mt-5 ml-[120px]" th:src="@{images/EllipseA.png}">
             </div>
             <div class="flex flex-col mt-8 gap-5">
                 <img class="w-[57px] h-[57px] ml-[60px] " th:src="@{images/EllipseR.png}" data-aos="fade-up-right">
@@ -138,7 +156,11 @@
 
             <div class="absolute top-4 left-4 bg-[#F29F05] text-white w-24 h-24 rounded-full flex items-center justify-center shadow-md text-center p-5">
                 <div  data-aos="flip-left" data-aos-duration="3000">
-                    <p class="text-lg font-bold leading-none">5</p>
+                     <span class="purecounter count-number font-semibold "
+                           data-purecounter-start="0"
+                           data-purecounter-end="10"
+                           data-purecounter-duration="2">
+                        </span>
                     <p class="text-xs leading-none">categorías</p>
                 </div>
             </div>
@@ -161,7 +183,7 @@
                 <br><br>
                 Desde la tecnología que redefine cómo nos comunicamos, hasta propuestas que generan impacto social, económico y ambiental, nuestros emprendedores se atreven a imaginar un futuro diferente… y lo construyen.
             </p>
-            <a class="text-[#F29F05] border border-[#F29F05] pt-5 pb-5 pr-10 pl-10 mt-10 transition-transform transform hover:scale-105 hover:bg-[#F29F05] hover:text-white" th:href="@{/startup}">ver Startups</a>
+            <a class="text-[#F29F05] border border-[#F29F05] pt-5 pb-5 pr-10 pl-10 mt-10 transition-transform transform hover:scale-105 hover:bg-[#F29F05] hover:text-white" th:href="@{/panelStartups}">ver Startups</a>
 
         </div>
 
@@ -302,6 +324,11 @@
 
 <footer  th:replace="~{layout/layout :: footer}" ></footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
+<script>
+    new PureCounter();
+</script>
+
 
 <!--CARRUCEL-->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -319,6 +346,7 @@
         grabCursor: false,
     });
 </script>
+
 
 
 

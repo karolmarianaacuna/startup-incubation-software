@@ -19,6 +19,7 @@ public interface ConvocatoriaService {
     public ConvocatoriaEntity viewDetails(Long id);
     public  List<ConvocatoriaEntity> filtrarPorEstado(String estado);
     public long contarStartups();
+    List<ConvocatoriaEntity> findByEstadoConvocatoriaIgnoreCase(String estadoConvocatoria);
 }
 
 

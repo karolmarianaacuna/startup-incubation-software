@@ -44,34 +44,56 @@
     </div>
 
     <!-- Sección de la imagen -->
-    <div class="w-[50%] flex justify-center items-center relative z-10">
-        <!-- Imagen de Camila al frente -->
-        <img th:src="@{/images/camila.png}" class="absolute top-[80px] right-[10px] h-[520px]" alt="Mentora">
+    <div class="w-[60%]">
+
+        <div class="relative ">
+            <!-- Fondo completo -->
+            <img th:src="@{images/elipseLogin.png}" alt="fondo"
+                 class="absolute top-[0] right-[0px] h-[600px]" />
+            <img  th:src="@{images/moneda.png}" alt="Dinero" class="absolute top-[-40px] right-[-40px]  " />
+            <img  th:src="@{images/billete.png}" alt="Dólar" class="absolute top-[-60px] right-[100px] w-[320px]"  />
+            <img  th:src="@{images/diagrama.png}" alt="Dólar" class="absolute top-[40px] right-[480px] w-[150px]"  />
+            <img th:src="@{images/flechaArriba.png}" alt="Gráfico" class="absolute top-[400px] left-[180px] w-[350px] " />
+            <img  th:src="@{images/moneda.png}" alt="Dólar" class="absolute top-[200px] right-[480px]"  />
+            <img  th:src="@{images/camila.png}" alt="personasLogin" class="absolute top-[80px] right-[10px] h-[520px]"  />
+        </div>
     </div>
-    <img th:src="@{/images/elipseLogin.png}" alt="fondo"
-         class="absolute top-0 right-0 h-[600px] z-0 pointer-events-none" />
 </section>
-<!-- Sección Ver Convocatorias -->
+<!-- Seccion de listar convocatorias activas -->
+
 <section class="bg-[#F8F85C] py-16">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-4 text-black">Ver Convocatorias</h2>
-        <p class="text-gray-800 text-lg mb-12">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-4 text-black text-center">Ver Convocatorias</h2>
+        <p class="text-gray-800 text-lg mb-12 text-center">
             Solicita una mentoría especializada para recibir acompañamiento y fortalecer tu proyecto.
             Un administrador te asignará un mentor disponible.
         </p>
 
-        <div class="col-span-2 row-span-2 group rounded-xl overflow-hidden">
-            <img th:src="${convocatorias[0]?.fotoConvocatoria}" class="w-full h-full object-cover" />
-
-            <div class="absolute inset-0 bg-gradient-to-t p-6 flex flex-col justify-end text-white">
-                <h3 class="text-2xl font-bold mb-2" th:text="${convocatorias[0]?.titulo}">Título de convocatoria</h3>
-                <p class="text-sm mb-2" th:text="${convocatorias[0]?.descripcion}">Descripción de convocatoria</p>
-                <span class="text-xs italic" th:text="${#dates.format(convocatorias[0]?.fechaCreacion, 'dd MMMM yyyy')}">Fecha</span>
-            </div>
+        <div th:if="${#lists.isEmpty(convocatorias)}" class="text-center text-gray-700 font-semibold">
+            No hay convocatorias activas en este momento.
         </div>
 
+        <div th:if="${!#lists.isEmpty(convocatorias)}" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div th:each="convocatoria : ${convocatorias}" class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <img th:src="${convocatoria.fotoConvocatoria}" class="w-full h-64 object-cover" alt="Foto convocatoria" />
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2" th:text="${convocatoria.titulo}"></h3>
+                    <p class="text-sm text-gray-600 mb-2" th:text="${convocatoria.descripcion}"></p>
+                    <span class="text-xs text-gray-400 italic" th:text="${#dates.format(convocatoria.fechaCreacion, 'dd MMMM yyyy')}"></span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
+<!--Seccion de listar startups-->
+<section class="mt-10 py-16">
+    <h2 class="text-3xl font-bold mb-4 text-black text-center">Mis Startups</h2>
+    <p class="text-gray-800 text-lg mb-12 text-center">
+        Solicita una mentoría especializada para recibir acompañamiento y fortalecer tu proyecto.
+        Un administrador te asignará un mentor disponible.
+    </p>
+
+</section>
 </body>
 </html>

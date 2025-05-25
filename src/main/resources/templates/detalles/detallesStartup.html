@@ -114,16 +114,22 @@
               <div class="flex flex-row flex-wrap gap-4">
                   <!--usuarios relacionados a la startup-->
                   <div th:each="usuarioRelacionado : ${usuarioRelacionado} "
-                       class="bg-[#F1F1F1] rounded-xl shadow-md flex flex-col items-center justify-center w-[250px] h-[300px] p-4 hover:scale-105 transition-transform duration-300">
+                       class="bg-[#F1F1F1] rounded-xl shadow-md flex flex-col items-center justify-center w-[250px] h-[400px] p-4 hover:scale-105 transition-transform duration-300">
 
                       <img th:src="${usuarioRelacionado.imagenUsuario}"
                            class="w-[150px] h-[150px] rounded-full object-cover mb-4"
                            alt="Foto del usuario" />
 
                       <p class="font-base text-black text-center" th:text="${usuarioRelacionado.nombreUsuario}"></p>
-                      <p class="font-base text-black text-center break-words" th:text="${usuarioRelacionado.correoUsuario}"></p>
+                      <p class=" fomfont-base text-black text-center break-words" th:text="${usuarioRelacionado.correoUsuario}"></p>
                       <p class="font-base text-black text-center" th:text="${usuarioRelacionado.profesionUsuario}"></p>
                       <p class="font-base text-black text-center" th:text="${usuarioRelacionado.cargo}"></p>
+                      <div class="flex flex-row justify-center items-center">
+                          <a class="bg-[#05A6A6] text-white font-bold px-6 py-2 rounded inline-block mt-6 transition-transform transform hover:scale-105 hover:bg-[#d68704]" th:href="@{'/usuario/' + ${usuarioRelacionado.idUsuario}}">
+                              ver mas info
+                          </a>
+
+                      </div>
                   </div>
 
               </div>
