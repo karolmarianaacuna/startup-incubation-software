@@ -9,23 +9,26 @@
 
     <!-- este es para la animacion de la pagina a esta va anidada un script que esta en el body -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <!-- este es para enlazar con la libreria de iconos -->
-        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
     <!-- este es para enlazar con lla libreria de estilos con tailwindcs-->
     <script src="https://cdn.tailwindcss.com"></script>
 
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
 
 <div th:fragment="navegacion"  style="background: linear-gradient(to bottom, #00c8d2, #048d94);">
     <div class="flex flex-row items-center justify-between  ">
         <div>
-            <img th:src="@{images/logoPrueba2.png}"  alt="logo" class=" w-[280px] py-2 mx-5 ">
+            <img th:src="@{/images/logoPrueba2.png}"  alt="logo" class=" w-[280px] py-2 mx-5 ">
         </div>
         <nav>
             <ul class="flex flex-row gap-6 px-10 py-6 justify-end items-center">

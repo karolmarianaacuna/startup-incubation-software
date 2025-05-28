@@ -1,71 +1,84 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head th:replace="~{layout/layout :: head}"></head>
-
-<body class=" font-[Poppins,sans-serif]">
-
+<body class=" font-[Poppins,sans-serif] ">
 
 <header th:replace="~{layout/layout :: navegacion}"></header>
 
-<section class="relative  mx-20 overflow-hidden">
-    <div class="flex flex-row items-start gap-12 relative z-10">
+
+<section class="relative py-16 px-10 overflow-hidden bg-[#F8F8F8]">
 
 
-        <div class="flex-shrink-0 rounded-full border-8 border-white shadow-2xl overflow-hidden w-[350px] h-[350px] transition-transform hover:scale-110 duration-500">
-            <img th:src="${usuario.imagenUsuario}" alt="Foto de perfil" class="w-full h-full object-cover" />
+    <div class="absolute bottom-20 right-[-60px] w-[800px] h-[800px] bg-[#F4F87B] rounded-full z-0"></div>
+    <div class="absolute bottom-0 left-[-80px] w-40 h-40 bg-[#F4F87B] rounded-full z-0"></div>
+
+    <div class="flex flex-row items-start gap-12 mx-auto relative z-10">
+
+
+        <div class="relative px-20 ">
+            <div class="rounded-full border-[8px] border-white shadow-lg overflow-hidden w-[400px] h-[400px] transition-transform hover:scale-105 duration-500">
+                <img th:src="${usuario.imagenUsuario}" alt="Foto de perfil" class="w-full h-full object-cover" />
+            </div>
+            <div class="absolute top-10 left-20 w-10 h-10 bg-[#05A6A6] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-10 right-20 w-20 h-20 bg-[#F4F87B] rounded-full translate-x-1/2 translate-y-1/2"></div>
         </div>
 
 
         <div>
-            <p class="text-4xl font-extrabold drop-shadow-lg uppercase" th:text="${usuario.nombreUsuario}"></p>
-            <p class="text-2xl font-light drop-shadow-md" th:text="${usuario.profesionUsuario}"></p>
-            <p class="text-xl font-thin mb-5 drop-shadow-md" th:text="${usuario.Cargo}"></p>
-            <p th:text="${usuario.descripcionProfesional}"></p>
+            <h2 class="text-4xl font-bold mb-2 uppercase text-[#232B59]" th:text="${usuario.nombreUsuario}"></h2>
+            <h3 class="text-2xl font-bold text-[#17a2b8]" th:text="${usuario.profesionUsuario}"></h3>
+            <p class="text-lg mb-2 font-thin text-[#F29F05]" th:text="${usuario.Cargo}"></p>
+            <p class="text-base text-[#232B59] mb-4 " th:text="${usuario.descripcionProfesional}"></p>
 
 
-            <!-- BLOQUE DE REDES -->
-            <div class="mt-16 bg-white bg-opacity-20 rounded-xl p-8 shadow-lg backdrop-blur-sm text-white">
-                <h2 class="text-3xl font-bold mb-6 border-b border-yellow-400 pb-2">Redes Sociales</h2>
-                <p class="mb-6">Aquí puedes ver las startups creadas, mentorías impartidas e inscripciones.</p>
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-yellow-400 bg-opacity-30 rounded-lg p-4 hover:bg-yellow-300 hover:text-[#1E2A78] transition cursor-pointer shadow-md">
-                        <h3 class="font-semibold text-xl">GitHub</h3>
-                        <a th:href="${usuario.githubUrl}" target="_blank"></a>
+
+            <div class="grid grid-cols-3 gap-6 mt-20 max-w-6xl w-full" data-aos="fade-up">
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
+                    <i class="fas fa-language text-[#05A6A6] text-3xl "></i>
+                    <h3 class="text-lg font-semibold text-[#1E2A78] mb-1">Idiomas</h3>
+                    <p class="text-gray-600" th:text="${usuario.idiomas}">Español, Inglés B1</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
+                    <div class="flex gap-6 mt-6 justify-center">
+                        <a th:href="${usuario.linkedinUrl}" target="_blank" class="text-[#0e76a8] text-3xl hover:text-[#084c81] transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a th:href="${usuario.githubUrl}" target="_blank" class="text-[#333] text-3xl hover:text-[#000] transition">
+                            <i class="fab fa-github"></i>
+                        </a>
                     </div>
-                    <div class="bg-yellow-400 bg-opacity-30 rounded-lg p-4 hover:bg-yellow-300 hover:text-[#1E2A78] transition cursor-pointer shadow-md">
-                        <h3 class="font-semibold text-xl">LinkedIn</h3>
-                        <a th:href="${usuario.linkedinUrl}" th:text="${usuario.linkedinUrl}" target="_blank"></a>
+                    <h3 class="text-lg font-semibold text-[#05A6A6] mb-1 mt-4">Redes sociales</h3>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
+
+
+                    <div class="flex gap-6 mt-6 justify-center">
+                        <a th:href="'mailto:' + ${usuario.correoUsuario}" class="hover:text-yellow-400 transition text-3xl text-yellow-400 "><i class="fas fa-envelope"></i></a>
+                        <a th:href="'tel:' + ${usuario.celularUsuario}" class="hover:text-yellow-400 transition text-3xl text-yellow-400"><i class="fas fa-phone-alt"></i></a>
+
                     </div>
-                    <div class="bg-yellow-400 bg-opacity-30 rounded-lg p-4 hover:bg-yellow-300 hover:text-[#1E2A78] transition cursor-pointer shadow-md col-span-2">
-                        <h3 class="font-semibold text-xl">Habilidades Lingüísticas</h3>
-                        <span th:text="${usuario.idiomas}"></span>
-                    </div>
+                    <h3 class="text-lg font-semibold text-[#1E2A78] mb-1">Contacto</h3>
+
+
                 </div>
             </div>
 
-            <!-- BOTONES -->
-            <div class="flex gap-5 mt-10">
-                <a href="#contacto" class="inline-block bg-yellow-400 hover:bg-yellow-300 text-[#1E2A78] font-semibold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105">
+            <!-- Botones -->
+            <div class="flex gap-5 mt-8">
+                <a href="#contacto" class="bg-[#F4F87B] hover:bg-yellow-400 text-[#17a2b8] font-semibold py-3 px-6 rounded-full shadow-md transition transform hover:scale-105">
                     ¡Conectemos!
                 </a>
-                <a href="#contacto" class="inline-block bg-yellow-400 hover:bg-yellow-300 text-[#1E2A78] font-semibold py-4 px-8 rounded-full shadow-lg transition transform hover:scale-105">
-                    ¡Descarga mi CV!
+                <a href="#cv" class="bg-[#17a2b8] hover:bg-[#138496] text-white font-semibold py-3 px-6 rounded-full shadow-md transition transform hover:scale-105">
+                    Descargar mi CV
                 </a>
             </div>
         </div>
     </div>
-
-
-
 </section>
 
-
-<!-- Botón volver -->
-<div class="text-center py-10 fade-in">
-    <a href="/" class="inline-block bg-[#05A6A6] text-white font-bold px-8 py-3 rounded-full shadow-lg hover:bg-[#048080] hover:scale-105 transition">
-        ← Volver al inicio
-    </a>
-</div>
+<script>
+    AOS.init();
+</script>
 
 <footer  th:replace="~{layout/layout :: footer}" ></footer>
 </body>

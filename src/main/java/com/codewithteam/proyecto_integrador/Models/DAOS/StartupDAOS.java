@@ -41,6 +41,11 @@ public interface StartupDAOS extends CrudRepository<StartupEntity, Long> {
 
 
 
+
+
+
+
+
 //    // Buscar por sector (exacto)
 //    @Transactional
 //    @Query("SELECT s FROM StartupEntity s WHERE s.nombreStartup LIKE ")
