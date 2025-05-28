@@ -29,6 +29,9 @@ public interface StartupService {
 
     public long contarStartups();
 
+    List<StartupEntity> findByUsuarioId(Long usuarioId);
+    // Devuelve una lista de startups asociadas a un usuario específico por su ID.
+
 
 
 

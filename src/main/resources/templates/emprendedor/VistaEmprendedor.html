@@ -10,13 +10,16 @@
     <nav>
         <ul class="flex flex-row gap-6 p-10 justify-end items-center">
             <li><a class="font-thin border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200"
-                   th:href="@{/}">Mis Startups</a>
+                   th:href="@{/pruebaEmprendedor#startupsEmprendedor}">Mis Startups</a>
             </li>
             <li><a class="font-thin border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200"
-                   th:href="@{/pruebaMentoria}">Solicitar Mentoria</a>
+                   th:href="@{/pruebaEmprendedor#mentoriaEmprendedor}">Solicitar Mentoria</a>
             </li>
             <li><a class="font-thin border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200"
-                   th:href="@{/pruebaConvocatorias}">Ver Convocatorias</a>
+                   th:href="@{/pruebaEmprendedor#convocatoriasEmprendedor}">Ver Convocatorias</a>
+            </li>
+            <li><a class="font-thin border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200"
+                   th:href="@{/}">Mi Perfil</a>
             </li>
             <li><a class="font-thin text-white bg-[#05A6A6] p-3 rounded-xl"
                    th:href="@{/pruebaCerrarSesion}">Cerrar Sesión</a>
@@ -25,7 +28,7 @@
     </nav>
 
 </div>
-<section class="flex flex-row h-[700px] bg-white relative overflow-hidden">
+<section id="mentoriaEmprendedor" class="flex flex-row h-[700px] bg-white relative overflow-hidden">
 
     <!-- Sección del texto -->
     <div class="w-[50%] flex justify-center items-center z-10">
@@ -60,13 +63,12 @@
     </div>
 </section>
 <!-- Seccion de listar convocatorias activas -->
-
-<section class="bg-[#F8F85C] py-16">
+<section id="convocatoriasEmprendedor" class="bg-[#F8F85C] py-16">
     <div class="max-w-6xl mx-auto px-6">
         <h2 class="text-3xl font-bold mb-4 text-black text-center">Ver Convocatorias</h2>
         <p class="text-gray-800 text-lg mb-12 text-center">
-            Solicita una mentoría especializada para recibir acompañamiento y fortalecer tu proyecto.
-            Un administrador te asignará un mentor disponible.
+            Explora las convocatorias activas disponibles y postúlate con tu startup.
+            Aprovecha esta oportunidad para impulsar tu proyecto y conectar con aliados estratégicos que apoyen tu crecimiento.
         </p>
 
         <div th:if="${#lists.isEmpty(convocatorias)}" class="text-center text-gray-700 font-semibold">
@@ -87,13 +89,42 @@
 </section>
 
 <!--Seccion de listar startups-->
-<section class="mt-10 py-16">
-    <h2 class="text-3xl font-bold mb-4 text-black text-center">Mis Startups</h2>
-    <p class="text-gray-800 text-lg mb-12 text-center">
-        Solicita una mentoría especializada para recibir acompañamiento y fortalecer tu proyecto.
-        Un administrador te asignará un mentor disponible.
-    </p>
+<section id="startupsEmprendedor" class="bg-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-4 text-black text-center">Mis Startups</h2>
+        <p class="text-gray-800 text-lg mb-12 text-center">
+            Estas son tus startups registradas actualmente en el sistema.
+        </p>
 
+        <!-- Si no hay startups -->
+        <div th:if="${startups == null or #lists.isEmpty(startups)}" class="text-center text-gray-700 font-semibold">
+            No tienes startups registradas por el momento.
+        </div>
+
+        <!-- Si hay startups -->
+        <div th:if="${startups != null and !#lists.isEmpty(startups)}" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div th:each="startup : ${startups}" class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <img th:if="${startup.logo != null}" th:src="@{${startup.logo}}" alt="Logo Startup"
+                     class="w-full h-48 object-cover"
+                     onerror="this.src='https://via.placeholder.com/400x200.png?text=Sin+logo'">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2" th:text="${startup.nombreStartup}">Nombre Startup</h3>
+                    <p class="text-gray-600 text-sm mb-2">
+                        <strong>Sector:</strong> <span th:text="${startup.sectorStartup}">Sector</span><br>
+                        <strong>Etapa:</strong> <span th:text="${startup.etapaStartup}">Etapa</span><br>
+                        <strong>Ubicación:</strong> <span th:text="${startup.ubicacionStartup}">Ubicación</span>
+                    </p>
+                </div>
+                <div class="px-6 pb-4">
+                    <a th:href="@{'/startups/detalle/' + ${startup.idStartup}}"
+                       class="inline-block bg-[#05A6A6] text-white px-4 py-2 rounded-xl text-sm hover:bg-[#048c8c] transition duration-300">
+                        Ver Detalles
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 </body>
 </html>

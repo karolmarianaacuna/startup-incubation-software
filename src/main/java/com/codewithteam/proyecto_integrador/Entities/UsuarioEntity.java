@@ -34,6 +34,25 @@ public class UsuarioEntity  implements Serializable {
     @Column(name="profesion_usuario")
     private String profesionUsuario;
 
+
+    @Size(min = 1, max=300)
+    @Column(name="descripcion_profesional")
+    private String descripcionProfesional;
+
+    @Size(min = 1, max=300)
+    @Column(name="linkedin_url")
+    private String linkedinUrl;
+
+    @Size(min = 1, max=300)
+    @Column(name="github_url")
+    private String githubUrl;
+
+    @Size(min = 1, max=300)
+    @Column(name="idiomas")
+    private String idiomas ;
+
+
+
     @NotNull
     @Size(min = 1, max=20)
     @Column(name="Cargo_usuario")

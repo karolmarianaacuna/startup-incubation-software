@@ -2,9 +2,12 @@ package com.codewithteam.proyecto_integrador.Controllers;
 
 import com.codewithteam.proyecto_integrador.Entities.ConvocatoriaEntity;
 import com.codewithteam.proyecto_integrador.Entities.MonitoriaEntity;
+import com.codewithteam.proyecto_integrador.Entities.StartupEntity;
 import com.codewithteam.proyecto_integrador.Entities.UsuarioEntity;
 import com.codewithteam.proyecto_integrador.Models.Service.ConvocatoriaService;
+import com.codewithteam.proyecto_integrador.Models.Service.StartupService;
 import com.codewithteam.proyecto_integrador.Models.Service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,19 +23,32 @@ public class EmprendedorController {
     private ConvocatoriaService convocatoriaService;
 
     @Autowired
+    private StartupService startupService;
+    @Autowired
     private UsuarioService usuarioService;
 
     @GetMapping("/pruebaEmprendedor")
-    public String pruebaEmprendedor(Model model) {
-
-        // Se crea una nueva entidad de monitoría para el formulario
+    public String pruebaEmprendedor(Model model, HttpSession session) {
+        // Agrega entidad vacía para el formulario de mentoría
         model.addAttribute("MonitoriaEntity", new MonitoriaEntity());
-        // Se obtienen únicamente las convocatorias activas
+        // Lista de convocatorias activas
         List<ConvocatoriaEntity> convocatoriasActivas = convocatoriaService.findByEstadoConvocatoriaIgnoreCase("ACTIVA");
-        // Se envían al modelo para mostrarlas en la vista
         model.addAttribute("convocatorias", convocatoriasActivas);
+        // Obtener usuario logueado desde sesión
+        UsuarioEntity usuario = (UsuarioEntity) session.getAttribute("usuarioLogueado");
+        // Si no hay usuario, evita errores (opcional)
+        if (usuario == null) {
+            model.addAttribute("startups", List.of()); // lista vacía
+        } else {
+            // Filtrar startups por correo del usuario
+            List<StartupEntity> startupsUsuario = startupService.findAll().stream()
+                    .filter(startup -> startup.getCorreoStartup().equalsIgnoreCase(usuario.getCorreoUsuario()))
+                    .toList();
+            model.addAttribute("startups", startupsUsuario);
+        }
         return "/emprendedor/VistaEmprendedor";
     }
+
 
     //trae a cada startup con su usuario o los usuarios relacionados
     @GetMapping("/usuario/{id}")
@@ -43,7 +59,6 @@ public class EmprendedorController {
         model.addAttribute("usuario", usuario);
         return "/detalles/detalleUsuario";
     }
-
 
 
 }

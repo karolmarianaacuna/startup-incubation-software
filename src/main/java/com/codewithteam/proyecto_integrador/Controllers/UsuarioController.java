@@ -4,6 +4,7 @@ import com.codewithteam.proyecto_integrador.Entities.UsuarioEntity;
 import com.codewithteam.proyecto_integrador.Models.DAOS.RolDAOS;
 import com.codewithteam.proyecto_integrador.Models.DAOS.UsuarioDAOS;
 import com.codewithteam.proyecto_integrador.Models.Service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -97,5 +98,42 @@ public class UsuarioController {
         // Este es el nombre del html
 
         return "/dashboard/dashboardEmprendedor";
+    }
+
+    @PostMapping("/login")
+    public String loginUsuario(@RequestParam("identificacion") String identificacion,
+                               @RequestParam("contrasena") String contrasena,
+                               RedirectAttributes redirectAttributes,
+                               HttpSession session) {
+
+
+
+        UsuarioEntity usuario = usuarioDAOS.findByIdentificacion(identificacion);
+
+
+
+        if (usuario == null) {
+            redirectAttributes.addFlashAttribute("error", "Usuario no encontrado.");
+            return "redirect:/pruebaLogin"; // O la ruta de tu formulario
+        }
+
+        if (!passwordEncoder.matches(contrasena, usuario.getContrasenaUsuario())) {
+            redirectAttributes.addFlashAttribute("error", "Contraseña incorrecta.");
+            return "redirect:/pruebaLogin";
+        }
+
+        // Guardar usuario en sesión
+        session.setAttribute("usuarioLogueado", usuario);
+
+        // Redirigir según el rol (si lo deseas)
+        String rol = usuario.getRol().getRol(); // Asumiendo que así accedes al rol
+
+        if ("ROLE_EMPRENDEDOR".equalsIgnoreCase(rol)) {
+            return "redirect:/pruebaEmprendedor";
+        } else if ("ROLE_INVERSIONISTA".equalsIgnoreCase(rol)) {
+            return "redirect:/panelStartups"; // ejemplo
+        }
+
+        return "redirect:/pruebaLogin"; // página por defecto
     }
 }

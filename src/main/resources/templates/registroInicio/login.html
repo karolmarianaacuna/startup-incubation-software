@@ -11,12 +11,16 @@
         <p class="text-5xl font-bold text-[#9FE5FE]">De vuelta </p>
 
         <p class="text-white font-thin mt-5">"Conéctate y sé parte activa del cambio. Sigue aportando al crecimiento de nuestra comunidad de innovación con tus ideas, talentos y compromiso por un futuro mejor."</p>
-        <form class="flex flex-col gap-5 mt-10 items-center">
+        <form class="flex flex-col gap-5 mt-10 items-center"  method="POST" th:action="@{/usuario/login}">
+
+            <div th:if="${error}" class="text-red-500 font-bold bg-white p-2 rounded w-[300px] text-center">
+                <p th:text="${error}"></p>
+            </div>
 
             <input type="text" name="identificacion" placeholder="Tu identificacion"
                    class=" w-full bg-[#F1F1F1] p-3 w-[300px]" />
 
-            <input type="text" name="constrasena" placeholder="Tu contraseña"
+            <input type="password" name="contrasena" placeholder="Tu contraseña"
                    class=" w-full bg-[#F1F1F1]  p-3 w-[300px]" />
 
 
