@@ -4,6 +4,7 @@ import com.codewithteam.proyecto_integrador.Entities.StartupEntity;
 import com.codewithteam.proyecto_integrador.Models.DAOS.StartupDAOS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,9 +33,16 @@ public class StartupServiceImplements implements StartupService {
         return startupDao.findById(id).orElse(null);
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
-        startupDao.deleteById(id);
+        StartupEntity startup = startupDao.findById(id).orElse(null);
+        if (startup != null) {
+            startupDao.delete(startup); // Ya que cascade y orphanRemoval están bien configurados
+            System.out.println("Startup eliminada con monitorías asociadas");
+        } else {
+            System.out.println("Startup no encontrada");
+        }
     }
 
     @Override

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -58,6 +60,18 @@ public class EmprendedorController {
 
         model.addAttribute("usuario", usuario);
         return "/detalles/detalleUsuario";
+    }
+
+    @PostMapping("/startupsEliminar/{id}")
+    @ResponseBody  // Solo agrega esto
+    public String eliminarStartup(@PathVariable Long id) {  // Cambia ResponseEntity por String
+        try {
+            startupService.deleteById(id);
+            return "success"; // En lugar de redirect
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error"; // En lugar de redirect
+        }
     }
 
 

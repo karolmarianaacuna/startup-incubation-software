@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+<body class="font-[Poppins,sans-serif] bg-gradient-to-r from-cyan-50 to-slate-50 relative">
+
+<div class="flex flex-row items-center justify-start m-5">
+    <a th:href="@{/}">
+        <img th:src="@{/images/logoSinFondo.png}" alt="logo" class="w-[600px] ml-5 mt-0">
+    </a>
+</div>
+
+<div class="flex justify-center mt-5 mb-20">
+    <div class="w-[50%] p-8 bg-white shadow-md rounded-xl" data-aos="zoom-in" data-aos-duration="2000">
+        <h2 class="text-xl font-bold text-center text-[#05A6A6] mb-6">Registrar Nueva Startup</h2>
+
+        <form th:object="${startup}" th:action="@{/startupsNueva}" method="post" enctype="multipart/form-data" class="flex flex-col gap-4 ">
+
+            <input type="text" th:field="*{nombreStartup}" placeholder="Nombre de la Startup"
+                   class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required />
+
+            <input type="email" th:field="*{correoStartup}" placeholder="Correo de contacto"
+                   class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required />
+
+            <textarea th:field="*{descripcionStartup}" placeholder="Descripción" rows="3"
+                      class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required></textarea>
+
+            <!-- Grid para inputs de a dos por fila -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="text" th:field="*{etapaStartup}" placeholder="Etapa de desarrollo"
+                       class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required />
+
+                <input type="text" th:field="*{ubicacionStartup}" placeholder="Ubicación"
+                       class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" />
+
+                <input type="date" th:field="*{fechaCreacion}" placeholder="Fecha de creación"
+                       class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" />
+
+                <input type="text" th:field="*{sectorStartup}" placeholder="Sector"
+                       class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required />
+            </div>
+
+            <textarea th:field="*{propuestaValor}" placeholder="Propuesta de valor" rows="3"
+                      class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required></textarea>
+
+            <textarea th:field="*{problematica}" placeholder="Problemática que aborda" rows="3"
+                      class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required></textarea>
+
+            <input type="file" name="logo" accept="image/*"
+                   class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required />
+
+            <button type="submit"
+                    class="bg-[#F0F650] text-[#232B59] font-semibold px-6 py-3 rounded-md hover:bg-yellow-300 transition">
+                Registrar
+            </button>
+
+        </form>
+        <div class="text-center mt-2">
+            <p class="text-sm font-thin">
+
+                <a class="text-[#05A6A6] font-semibold hover:underline" th:href="@{/pruebaEmprendedor}">
+                    ¿Volver?
+                </a>
+            </p>
+        </div>
+
+
+
+        <div th:if="${error}" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert">
+            <strong class="font-bold">Error:</strong>
+            <span class="block sm:inline" th:text="${error}">Hubo un error.</span>
+        </div>
+
+        <div th:if="${mensajeExito}" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4" role="alert">
+            <strong class="font-bold">¡Éxito!</strong>
+            <span class="block sm:inline" th:text="${mensajeExito}">Startup registrada.</span>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
+
+<script>
+    setTimeout(() => {
+        const successMsg = document.querySelector("[th\\:if='${mensajeExito}']");
+        const errorMsg = document.querySelector("[th\\:if='${error}']");
+        if (successMsg) successMsg.style.display = "none";
+        if (errorMsg) errorMsg.style.display = "none";
+    }, 3000);
+</script>
+
+</body>
+</html>

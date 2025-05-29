@@ -87,7 +87,7 @@ public class StartupEntity implements Serializable {
     private ConvocatoriaEntity convocatoria;
 
     //Relacion de startup a mentoria (uno a muchos)
-    @OneToMany(mappedBy = "startupMonitoria", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "startupMonitoria", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<MonitoriaEntity> monitoriasStartup;
 
     //relacion de startup con noticias(muchos a uno)

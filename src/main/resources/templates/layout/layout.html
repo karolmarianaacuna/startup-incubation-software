@@ -81,6 +81,31 @@
 
 
 </div>
+
+<div th:fragment="navegacionAdmin"  style="background: linear-gradient(to bottom, #00c8d2, #048d94);">
+    <div class="flex flex-row items-center justify-between  ">
+        <div>
+            <img th:src="@{/images/logoPrueba2.png}"  alt="logo" class=" w-[280px] py-2 mx-5 ">
+        </div>
+        <nav>
+            <ul class="flex flex-row gap-4 p-10 justify-end">
+                <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] text-white transition duration-200" th:href="@{/}">Gestiona Convocatorias</a></li>
+                <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] text-white transition duration-200" th:href="@{/gestionarUsuarios}">Gestiona Usuarios</a></li>
+                <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] text-white transition duration-200" th:href="@{/asignarMentorias}">Asigna Monitoria </a></li>
+                <li><a class="text-white bg-[#232B59] px-5 py-2 rounded-xl hover:bg-[#048e8e] transition-colors duration-300 " th:href="@{/}">Cerrar Sesion</a></li>
+            </ul>
+
+
+        </nav>
+
+
+
+    </div>
+    <span class=" block mx-auto w-full h-1 bg-[#ffeb3b] mt-2 rounded"></span>
+
+
+
+</div>
 <footer th:fragment="footer" class="bg-[#232B59]">
     <div class="grid grid-cols-3 gap-5 pt-10 pl-10 pr-10">
 

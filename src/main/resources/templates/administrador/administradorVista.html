@@ -3,25 +3,20 @@
 <head th:replace="~{layout/layout :: head}"></head>
 <body class="font-[Poppins,sans-serif] ">
 
-<div class="flex flex-row items-center justify-between mt-5 ">
-    <div>
-        <img th:src="@{images/logo.png}"  alt="logo" class=" w-[350px] ml-10 ">
-    </div>
-    <nav>
-        <ul class="flex flex-row gap-4 p-10 justify-end">
-            <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/}">Gestiona Convocatorias</a></li>
-            <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/pruebaMentoria}">Gestiona Usuarios</a></li>
-            <li><a class="font-thin  border-b-2 border-transparent hover:border-b-[#EAF205] transition duration-200" th:href="@{/pruebaConvocatorias}">Asigna Monitoria </a></li>
-            <li><a class="font-thin text-white bg-[#05A6A6] p-3 rounded-xl mt-10 " th:href="@{/pruebaCerrarSesion}">Cerrar Sesion</a></li>
-        </ul>
-
-    </nav>
-</div>
+<header th:replace="~{layout/layout :: navegacionAdmin}"></header>
 
 <section class="py-10 px-20 mt-10">
     <div>
-        <h2 class="text-xl font-bold text-black mb-2">CONVOCATORIAS</h2>
+        <div class="flex items-center justify-between mb-2">
+            <h2 class="text-xl font-bold text-black">CONVOCATORIAS</h2>
+            <button class="bg-[#05A6A6] items-center justify-between    text-white font-bold px-4 py-3 h-10 rounded-full hover:bg-[#40BFBF] transition-all">
+                Nueva Convocatoria
+            </button>
+        </div>
         <hr class="border-t border-purple-300 mb-6" />
+
+
+
 
         <div class="grid md:grid-cols-1 gap-6">
             <div class="flex bg-white shadow-md rounded-lg overflow-hidden text-black" th:each=" convocatoria : ${convocatorias}">
@@ -35,26 +30,83 @@
                     <span class="text-[#05A6A6] text-sm font-semibold mb-2 block" th:text="${convocatoria.estadoConvocatoria}">Activa</span>
                     <p class="text-sm text-gray-600" th:text="${convocatoria.descripcion}">Descripción de la convocatoria</p>
                     <p class="text-sm text-gray-600">Fecha inicio: [[${convocatoria.fechaInicio}]]</p>
-                    <p class="text-sm text-gray-600">Fecha inicio: [[${convocatoria.fechaFin}]]</p>
+                    <p class="text-sm text-gray-600">Fecha fin: [[${convocatoria.fechaFin}]]</p>
                 </div>
                 <div class="flex items-center justify-between flex-row gap-5 mt-4 ml-auto">
                     <button class="flex items-center justify-between bg-[#05A6A6] text-white font-bold px-4 py-3 h-10 rounded-full hover:bg-[#40BFBF] transition-all"
-                            th:onclick="'editarConvocatoria(' + ${convocatoria.idConvocatoria} + ')'">
+                            th:action="@{/editarConvocatoria/{id}(id=${convocatoria.idConvocatoria})}">
                         Editar
                     </button>
-                    <button class="flex items-center justify-between bg-[#05A6A6] text-white font-bold px-4 py-3 h-10 rounded-full hover:bg-[#40BFBF] transition-all"
-                            th:onclick="'eliminarConvocatoria(' + ${convocatoria.idConvocatoria} + ')'">
-                        Eliminar
-                    </button>
+
+                    <form th:action="@{/eliminarConvocatoria/{id}(id=${convocatoria.idConvocatoria})}" th:method="post" onsubmit="return confirmarEliminacion(event, this)">
+                        <button type="submit"
+                                class="flex items-center justify-between bg-[#05A6A6] text-white font-bold px-4 py-3 h-10 rounded-full hover:bg-[#40BFBF] transition-all">
+                            Eliminar
+                        </button>
+                    </form>
 
                 </div>
             </div>
         </div>
 
-
-
-
 </section>
+
+<script>
+    window.addEventListener("DOMContentLoaded", function () {
+        const toast = document.getElementById("toast-exito");
+        if (toast) {
+            toast.classList.remove("opacity-0");
+            toast.classList.add("opacity-100")
+            setTimeout(() => {
+                toast.classList.remove("opacity-100");
+                toast.classList.add("opacity-0");
+            }, 3000)
+        }
+    })
+</script>
+<script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let successMessage = "[[${success}]]";
+        if (successMessage && successMessage != "null" && successMessage.trim() != "") {
+            Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: successMessage
+            });
+        }
+        //Mensaje de error
+        let errorMessage = "[[${error}]]";
+        if (errorMessage && errorMessage != "null" && errorMessage.trim() != "") {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: errorMessage
+            });
+        }
+
+    });
+
+    function confirmarEliminacion(event, form) {
+        event.preventDefault();
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Esta acción no se puede deshacer.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#991b1b",
+            cancelButtonColor: "#f59e0b",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+
+        return false;
+    }
+</script>
 
 
 </body>

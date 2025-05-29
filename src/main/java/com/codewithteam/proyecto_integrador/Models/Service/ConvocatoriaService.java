@@ -15,6 +15,7 @@ public interface ConvocatoriaService {
     public Optional<ConvocatoriaEntity> findById(Long id);
     public void deleteById(Long id) ;
     public ConvocatoriaEntity actualizarconvocatoria(ConvocatoriaEntity convocatoria);
+    public boolean deleteByIdIfNoStartups(Long id);
     public void changeState(Long id);
     public ConvocatoriaEntity viewDetails(Long id);
     public  List<ConvocatoriaEntity> filtrarPorEstado(String estado);

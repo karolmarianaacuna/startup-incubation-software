@@ -18,10 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -107,7 +104,7 @@ public class startupController {
             CloseableHttpClient httpClient = HttpClients.createDefault();
             HttpPost httpPost = new HttpPost("https://api.imgbb.com/1/upload");
 
-            MultipartEntityBuilder builder = MultipartEntityBuilder.create().create();
+            MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.addTextBody("key","e38b77d8e3d41a6e26e71e1afc339ec1",
                     ContentType.TEXT_PLAIN);
             builder.addBinaryBody("image", imagen.getInputStream(),
@@ -136,6 +133,45 @@ public class startupController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @GetMapping("/startupsNueva")
+    public String nuevaStartup(Model model) {
+        model.addAttribute("title", "Registrar nueva Startup");
+        model.addAttribute("startup", new StartupEntity()); // Formulario limpio
+        return "emprendedor/FormularioCrearStartups";
+    }
+    @PostMapping("/startupsNueva")
+    public String guardarStartup(@Valid @ModelAttribute("startup") StartupEntity startup,
+                                 BindingResult result,
+                                 @RequestParam("logo") MultipartFile logo,
+                                 RedirectAttributes redirectAttributes,
+                                 Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("title", "Registrar nueva Startup");
+            return "emprendedor/FormularioCrearStartups";
+        }
+
+        String urlLogo = guardarImagen(logo);
+        if (urlLogo == null || urlLogo.isBlank()) {
+            model.addAttribute("title", "Registrar nueva Startup");
+            model.addAttribute("error", "Error al subir el logo. Intenta nuevamente.");
+            return "emprendedor/FormularioCrearStartups";
+        }
+
+        startup.setLogo(urlLogo);
+
+        try {
+            startupService.save(startup);
+            redirectAttributes.addFlashAttribute("mensajeExito", "Startup registrada correctamente.");
+            return "redirect:/startupsNueva"; // REDIRECT para limpiar el formulario
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("title", "Registrar nueva Startup");
+            model.addAttribute("error", "Error al guardar la startup.");
+            return "emprendedor/FormularioCrearStartups";
+        }
     }
 
 

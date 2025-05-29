@@ -12,6 +12,7 @@ import java.util.List;
 public interface StartupDAOS extends CrudRepository<StartupEntity, Long> {
 
     List<StartupEntity> findAll();
+    boolean existsByConvocatoria_IdConvocatoria(Long idConvocatoria);
 
     // Ver detalles de una startup por ID
     @Transactional
