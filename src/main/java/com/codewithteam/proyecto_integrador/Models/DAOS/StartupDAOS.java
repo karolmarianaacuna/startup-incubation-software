@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface StartupDAOS extends CrudRepository<StartupEntity, Long> {
 
+    List<StartupEntity> findAll();
+
     // Ver detalles de una startup por ID
     @Transactional
     @Query("SELECT s FROM StartupEntity s WHERE s.idStartup = ?1")
