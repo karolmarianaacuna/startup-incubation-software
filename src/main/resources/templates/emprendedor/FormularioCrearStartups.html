@@ -13,7 +13,7 @@
     <div class="w-[50%] p-8 bg-white shadow-md rounded-xl" data-aos="zoom-in" data-aos-duration="2000">
         <h2 class="text-xl font-bold text-center text-[#05A6A6] mb-6">Registrar Nueva Startup</h2>
 
-        <form th:object="${startup}" th:action="@{/startupsNueva}" method="post" enctype="multipart/form-data" class="flex flex-col gap-4 ">
+        <form th:object="${startup}" th:action="@{/crearStartup}" method="post" enctype="multipart/form-data" class="flex flex-col gap-4 ">
 
             <input type="text" th:field="*{nombreStartup}" placeholder="Nombre de la Startup"
                    class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required />
@@ -45,7 +45,7 @@
             <textarea th:field="*{problematica}" placeholder="Problemática que aborda" rows="3"
                       class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required></textarea>
 
-            <input type="file" name="logo" accept="image/*"
+            <input type="file" name="logo1" accept="image/*"
                    class="bg-[#F1F1F1] p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#05A6A6]" required />
 
             <button type="submit"
