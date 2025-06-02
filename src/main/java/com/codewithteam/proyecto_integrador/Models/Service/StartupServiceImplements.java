@@ -62,6 +62,11 @@ public class StartupServiceImplements implements StartupService {
     }
 
     @Override
+    public List<StartupEntity> findByName(String nombreStartup) {
+        return startupDao.buscarPorNombre(nombreStartup);
+    }
+
+    @Override
     public long contarStartups() {
         return startupDao.contarStartups();
     }

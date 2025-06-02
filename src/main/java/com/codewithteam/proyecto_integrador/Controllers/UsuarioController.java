@@ -92,13 +92,13 @@ public class UsuarioController {
 
 
 
-
-    @GetMapping("/pruebadashboardEmeprendedor")
-    public String Emprendedor() {
-        // Este es el nombre del html
-
-        return "/dashboard/dashboardEmprendedor";
-    }
+//
+//    @GetMapping("/pruebadashboardEmeprendedor")
+//    public String Emprendedor() {
+//        // Este es el nombre del html
+//
+//        return "/dashboard/dashboardEmprendedor";
+//    }
 
     @PostMapping("/login")
     public String loginUsuario(@RequestParam("identificacion") String identificacion,

@@ -23,8 +23,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class startupController {
@@ -34,24 +40,22 @@ public class startupController {
     @Autowired
     private MonitoriaService monitoriaService;
 
-    // Ruta que devuelve la vista de startups con la lista cargada
+
+
     @GetMapping("/panelStartups")
-    public String inicioStartup(@RequestParam(required = false) String categoria,Model model) {
+    public String inicioStartup(@RequestParam(required = false) String categoria, Model model) {
+        List<StartupEntity> startupsporCategoria;
 
-        List<StartupEntity> startups = startupService.findAll();
 
 
-        //vamos a filtar por categorias depende del combo box  en la misma vista
         if (categoria != null && !categoria.isEmpty()) {
-            startups = startupService.findByCategoria(categoria);
+            startupsporCategoria = startupService.findByCategoria(categoria);
         } else {
-            startups = startupService.findAll();
+            startupsporCategoria = startupService.findAll();
         }
 
-        model.addAttribute("startups", startups);
-        model.addAttribute("categoria", categoria);
-
-
+        model.addAttribute("startupsporCategoria", startupsporCategoria);
+        model.addAttribute("categoriaSeleccionada", categoria); // Esto es importante para mantener el <select>
         return "/startups/startups";
     }
 
@@ -73,105 +77,44 @@ public class startupController {
 
 
 
+
+
     @GetMapping("/crearStartup")
-    public String crearSartup(Model model){
+    public String crearStartup(Model model) {
 
         model.addAttribute("title", "Registrar Startup");
-        model.addAttribute("startupEntity",new StartupEntity());
+        model.addAttribute("startup", new StartupEntity());
 
 
-        return "/registroInicio/registroStartup";
+        return "emprendedor/FormularioCrearStartups";
     }
 
     @PostMapping("/crearStartup")
-    public String guardarStartup(@Valid StartupEntity startupEntity, @RequestParam(value = "foto") MultipartFile foto, BindingResult result, RedirectAttributes redirectAttributes) {
-//        String urlImagen = guardarImagen(foto);
-//        if (result.hasErrors()) {
-//            System.out.println(result.getAllErrors());
-//            return "habitaciones/crearHabitacion";
-//
-//        }
-//        habitacion.setFotoHab(urlImagen);
-//        habitacion.setDisponibilidad(true);
-//        habitacionService.save(habitacion);
-//        redirectAttributes.addFlashAttribute("mensajeExito", "Room Saved Successfully");
-        return "redirect:/habitacionesProtalPrueba";
-    }
+    public String guardarStartup(@ModelAttribute("startup") StartupEntity startup,
+                                 @RequestParam("logo1") MultipartFile imagenFile,
+                                 RedirectAttributes redirectAttributes) {
+        try {
+            // Establecer fecha de creación
+            startup.setFechaCreacion(new Date());
 
-
-    private String guardarImagen(MultipartFile imagen) {
-        try{
-            CloseableHttpClient httpClient = HttpClients.createDefault();
-            HttpPost httpPost = new HttpPost("https://api.imgbb.com/1/upload");
-
-            MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-            builder.addTextBody("key","e38b77d8e3d41a6e26e71e1afc339ec1",
-                    ContentType.TEXT_PLAIN);
-            builder.addBinaryBody("image", imagen.getInputStream(),
-                    ContentType.DEFAULT_BINARY,imagen.getOriginalFilename());
-
-            HttpEntity multipart = builder.build();
-            httpPost.setEntity(multipart);
-            HttpResponse response = httpClient.execute(httpPost);
-            HttpEntity responseEntity = response.getEntity();
-            if (response.getStatusLine().getStatusCode() == 200) {
-                String responseString = EntityUtils.toString(responseEntity);
-                JSONObject jsonResponse = new JSONObject(responseString);
-                boolean success = jsonResponse.getBoolean("success");
-                if (success) {
-                    JSONObject data = jsonResponse.getJSONObject("data");
-                    return data.getString("url");
-
-
-                }else {
-                    System.err.println("Error loading Image"+ jsonResponse.optString("error", "Unknown Error"));
-                }
+            // Manejar la subida de archivos
+            if (!imagenFile.isEmpty()) {
+                String nombreArchivo = UUID.randomUUID().toString() + "_" + imagenFile.getOriginalFilename();
+                Path ruta = Paths.get("src/main/resources/static/uploads/" + nombreArchivo);
+                Files.write(ruta, imagenFile.getBytes());
+                startup.setLogo(nombreArchivo);  // Solo guardamos el nombre del archivo como String
             }
 
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @GetMapping("/startupsNueva")
-    public String nuevaStartup(Model model) {
-        model.addAttribute("title", "Registrar nueva Startup");
-        model.addAttribute("startup", new StartupEntity()); // Formulario limpio
-        return "emprendedor/FormularioCrearStartups";
-    }
-    @PostMapping("/startupsNueva")
-    public String guardarStartup(@Valid @ModelAttribute("startup") StartupEntity startup,
-                                 BindingResult result,
-                                 @RequestParam("logo") MultipartFile logo,
-                                 RedirectAttributes redirectAttributes,
-                                 Model model) {
-
-        if (result.hasErrors()) {
-            model.addAttribute("title", "Registrar nueva Startup");
-            return "emprendedor/FormularioCrearStartups";
-        }
-
-        String urlLogo = guardarImagen(logo);
-        if (urlLogo == null || urlLogo.isBlank()) {
-            model.addAttribute("title", "Registrar nueva Startup");
-            model.addAttribute("error", "Error al subir el logo. Intenta nuevamente.");
-            return "emprendedor/FormularioCrearStartups";
-        }
-
-        startup.setLogo(urlLogo);
-
-        try {
             startupService.save(startup);
-            redirectAttributes.addFlashAttribute("mensajeExito", "Startup registrada correctamente.");
-            return "redirect:/startupsNueva"; // REDIRECT para limpiar el formulario
-        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("mensajeExito", "Startup registrada exitosamente");
+            return "redirect:/crearStartup?success";
+
+        } catch (IOException e) {
             e.printStackTrace();
-            model.addAttribute("title", "Registrar nueva Startup");
-            model.addAttribute("error", "Error al guardar la startup.");
-            return "emprendedor/FormularioCrearStartups";
+            redirectAttributes.addFlashAttribute("error", "Error al guardar la startup o subir la imagen.");
+            return "redirect:/crearStartup?error";
         }
+
     }
 
 

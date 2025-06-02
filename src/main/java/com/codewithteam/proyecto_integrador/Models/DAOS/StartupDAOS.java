@@ -30,6 +30,11 @@ public interface StartupDAOS extends CrudRepository<StartupEntity, Long> {
     @Query("SELECT s FROM StartupEntity s WHERE s.sectorStartup = ?1")
     List<StartupEntity> buscarPorSector(String sectorStartup);
 
+    @Query("SELECT s FROM StartupEntity s WHERE LOWER(s.nombreStartup) LIKE LOWER(CONCAT('%', ?1, '%'))")
+    List<StartupEntity> buscarPorNombre(String nombreStartup);
+
+
+
     //contra la cantidad de startups
     @Transactional
     @Query("SELECT COUNT(s) FROM StartupEntity s")
